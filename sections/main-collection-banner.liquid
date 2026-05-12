@@ -1,76 +1,137 @@
-{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
-
 {%- style -%}
+  .collection-banner-{{ section.id }} {
+    background-color: #fdfdfd;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    border-bottom: 1px solid #eeeeee;
+  }
+
   @media screen and (max-width: 749px) {
-    .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+    .collection-banner-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
+  }
+
+  /* Fil d'Ariane */
+  .collection-banner-{{ section.id }} .collection-banner__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #888888;
+    margin-bottom: 1rem;
+  }
+  .collection-banner-{{ section.id }} .collection-banner__breadcrumb a {
+    color: #888888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .collection-banner-{{ section.id }} .collection-banner__breadcrumb a:hover {
+    color: #74B734;
+  }
+  .collection-banner-{{ section.id }} .collection-banner__breadcrumb .sep {
+    color: #cccccc;
+  }
+
+  /* Titre */
+  .collection-banner-{{ section.id }} .collection-banner__title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #2a2a2a;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-banner-{{ section.id }} .collection-banner__title {
+      font-size: 1.8rem;
+    }
+  }
+
+  /* Sous-titre */
+  .collection-banner-{{ section.id }} .collection-banner__subtitle {
+    color: #666666;
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 640px;
+    margin: 0;
+  }
+  .collection-banner-{{ section.id }} .collection-banner__subtitle p {
+    margin: 0;
   }
 {%- endstyle -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
-        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
-      </h1>
+<div class="collection-banner-{{ section.id }}">
+  <div class="page-width">
 
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+    {%- comment -%} Fil d'Ariane {%- endcomment -%}
+    <nav class="collection-banner__breadcrumb" aria-label="Fil d'Ariane">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>{{ collection.title | default: 'Catalogue' }}</span>
+    </nav>
+
+    {%- comment -%} Titre {%- endcomment -%}
+    <h1 class="collection-banner__title">
+      {%- if section.settings.custom_title != blank -%}
+        {{ section.settings.custom_title }}
+      {%- else -%}
+        {{ collection.title | default: 'Tous les produits' }}
       {%- endif -%}
-    </div>
+    </h1>
 
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
-        <img
-          srcset="
-            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
-            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
-            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w
-          "
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.image.alt | escape }}"
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
-        >
+    {%- comment -%} Sous-titre {%- endcomment -%}
+    {%- if section.settings.subtitle != blank -%}
+      <div class="collection-banner__subtitle rte">
+        {{ section.settings.subtitle }}
       </div>
     {%- endif -%}
+
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "t:sections.main-collection-banner.name",
+  "name": "En-tête de catalogue",
   "class": "section",
   "settings": [
     {
-      "type": "paragraph",
-      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+      "type": "text",
+      "id": "custom_title",
+      "label": "Titre personnalisé",
+      "info": "Laisse vide pour utiliser le nom de la collection",
+      "default": "Tous les produits"
     },
     {
-      "type": "checkbox",
-      "id": "show_collection_description",
-      "default": true,
-      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "<p>Découvrez notre sélection de gadgets de cuisine malins, simples à utiliser et accessibles à moins de 20 €. Des produits testés et approuvés pour simplifier votre quotidien. Livraison rapide, retours faciles.</p>"
     },
     {
-      "type": "checkbox",
-      "id": "show_collection_image",
-      "default": false,
-      "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
+      "type": "header",
+      "content": "Espacement"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement haut",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement bas",
+      "default": 40
     }
   ]
 }

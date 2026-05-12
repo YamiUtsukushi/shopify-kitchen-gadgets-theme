@@ -1,6 +1,6 @@
 # 🍳 Shopify Theme — Kitchen Gadgets Store
 
-Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-commerce spécialisée dans les **gadgets de cuisine du quotidien** — des produits simples, malins et accessibles, livrés directement chez le client (dropshipping). Refonte complète du header, hero banner animé avec mots rotatifs, section Bestsellers avec ajout au panier instantané, et charte graphique cohérente sur l'ensemble du thème.
+Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-commerce spécialisée dans les **gadgets de cuisine du quotidien** — des produits simples, malins et accessibles, livrés directement chez le client (dropshipping). Refonte complète du header, hero banner animé avec mots rotatifs, section Bestsellers, page catalogue avec filtres en accordéon, et charte graphique cohérente sur l'ensemble du thème.
 
 ---
 
@@ -49,6 +49,19 @@ Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-comme
 - Bouton **"+ Ajouter au panier"** avec ajout direct (POST `/cart/add`)
 - Grille responsive : 6 colonnes → 3 → 2 selon la taille d'écran
 
+### 🗂️ Page Catalogue
+- **En-tête** : fil d'Ariane `Home / Catalogue`, titre configurable, sous-titre richtext 3 lignes
+- **Layout 2 colonnes** : sidebar filtres sticky à gauche + grille produits à droite
+- **5 filtres en accordéon** (chevron animé, texte majuscule + espacement lettres) :
+  - Disponibilité (En stock / Rupture de stock) via params natifs Shopify OS 2.0
+  - Prix — curseur double avec bouton "Appliquer" (`filter.v.price.gte/lte`)
+  - Catégorie — 6 tags (Éplucheurs, Spiraliseurs, Minuteurs, Découpe, Mesure, Rangement)
+  - Promotions — filtre tag `sale`
+  - Nouveautés — tri `created-descending`
+- **Barre de résultats** : nombre de produits + sélecteur de tri natif Shopify
+- **Grille 3 colonnes** avec les mêmes cartes que Bestsellers (prix barré, add to cart)
+- **Pagination** numérotée, responsive mobile (2 colonnes)
+
 ### 🎨 Charte graphique cohérente
 | Élément | Couleur |
 |---|---|
@@ -92,8 +105,10 @@ shopify theme dev --store=ta-boutique.myshopify.com
 │   ├── announcement-bar.liquid   # Barre d'annonce animée (3 messages rotatifs)
 │   ├── header.liquid             # Header custom (search inline, Figtree, flex layout)
 │   ├── hero-banner.liquid        # Slideshow hero avec mots rotatifs et couleurs par slide
-│   ├── bestsellers.liquid        # Section bestsellers (6 produits manuels + add to cart)
-│   └── ...                       # Sections Dawn natives conservées
+│   ├── bestsellers.liquid              # Section bestsellers (6 produits manuels + add to cart)
+│   ├── main-collection-banner.liquid   # En-tête page catalogue (fil d'Ariane, titre, sous-titre)
+│   ├── main-collection-product-grid.liquid  # Grille catalogue (filtres accordéon + 3 colonnes)
+│   └── ...                             # Sections Dawn natives conservées
 ├── snippets/
 │   ├── header-dropdown-menu.liquid
 │   ├── header-search.liquid
@@ -121,7 +136,7 @@ shopify theme dev --store=ta-boutique.myshopify.com
 
 ## 🗺️ Roadmap
 
-- [ ] Page collection avec filtres (catégories, prix, popularité)
+- [x] Page collection avec filtres (catégories, prix, disponibilité, promotions, nouveautés)
 - [ ] Section "Comment ça marche" (3 étapes illustrées)
 - [ ] Section avis clients avec étoiles
 - [ ] Bouton pause avec timer animé sur le hero banner
