@@ -1,0 +1,299 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .bestsellers-section-{{ section.id }} {
+    background-color: #fdfdfd;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .bestsellers-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+  }
+
+  .bestsellers-section-{{ section.id }} .bestsellers__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2a2a2a;
+    margin: 0 0 2rem 0;
+    text-align: left;
+  }
+
+  .bestsellers-section-{{ section.id }} .bestsellers__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .bestsellers-section-{{ section.id }} .bestsellers__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .bestsellers-section-{{ section.id }} .bestsellers__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+  }
+
+  .bestsellers-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eeeeee;
+    transition: box-shadow 0.2s ease;
+    height: 100%;
+  }
+  .bestsellers-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
+  }
+
+  .bestsellers-card__image-wrapper {
+    background: #ffffff;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 1rem;
+  }
+  .bestsellers-card__image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  .bestsellers-card:hover .bestsellers-card__image-wrapper img {
+    transform: scale(1.04);
+  }
+
+  .bestsellers-card__body {
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+  }
+
+  .bestsellers-card__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #2a2a2a;
+    margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .bestsellers-card__title:hover {
+    color: #74B734;
+  }
+
+  .bestsellers-card__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .bestsellers-card__price--regular {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2a2a2a;
+  }
+  .bestsellers-card__price--compare {
+    font-size: 0.85rem;
+    color: #999999;
+    text-decoration: line-through;
+  }
+  .bestsellers-card__price--sale {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #e53e3e;
+  }
+
+  .bestsellers-card__btn {
+    margin-top: auto;
+    width: 100%;
+    background-color: #74B734;
+    color: #ffffff;
+    border: 2px solid #74B734;
+    border-radius: 4px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    text-align: center;
+    display: block;
+  }
+  .bestsellers-card__btn:hover {
+    background-color: #5a9228;
+    border-color: #5a9228;
+  }
+  .bestsellers-card__btn:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    cursor: not-allowed;
+  }
+{%- endstyle -%}
+
+<div class="bestsellers-section-{{ section.id }}">
+  <div class="page-width">
+
+    <h2 class="bestsellers__title">{{ section.settings.title }}</h2>
+
+    <ul class="bestsellers__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- assign product = block.settings.product -%}
+        <li {{ block.shopify_attributes }}>
+          {%- if product != blank -%}
+            {%- assign current_variant = product.selected_or_first_available_variant -%}
+            <div class="bestsellers-card">
+
+              <a href="{{ product.url }}" class="bestsellers-card__image-wrapper" aria-label="{{ product.title | escape }}">
+                {%- if product.featured_media -%}
+                  {{ product.featured_media | image_url: width: 400 | image_tag:
+                    loading: 'lazy',
+                    alt: product.featured_media.alt | escape
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </a>
+
+              <div class="bestsellers-card__body">
+
+                <a href="{{ product.url }}" class="bestsellers-card__title">
+                  {{ product.title | escape }}
+                </a>
+
+                <div class="bestsellers-card__price">
+                  {%- if current_variant.compare_at_price > current_variant.price -%}
+                    <span class="bestsellers-card__price--compare">{{ current_variant.compare_at_price | money }}</span>
+                    <span class="bestsellers-card__price--sale">{{ current_variant.price | money }}</span>
+                  {%- else -%}
+                    <span class="bestsellers-card__price--regular">{{ current_variant.price | money }}</span>
+                  {%- endif -%}
+                </div>
+
+                {%- if current_variant.available -%}
+                  <form action="{{ routes.cart_add_url }}" method="post">
+                    <input type="hidden" name="id" value="{{ current_variant.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" name="add" class="bestsellers-card__btn">
+                      + Ajouter au panier
+                    </button>
+                  </form>
+                {%- else -%}
+                  <button class="bestsellers-card__btn" disabled>Indisponible</button>
+                {%- endif -%}
+
+              </div>
+            </div>
+
+          {%- else -%}
+            {%- comment -%} Placeholder vide dans le customizer {%- endcomment -%}
+            <div class="bestsellers-card">
+              <div class="bestsellers-card__image-wrapper">
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="bestsellers-card__body">
+                <p class="bestsellers-card__title">Sélectionner un produit</p>
+                <div class="bestsellers-card__price">
+                  <span class="bestsellers-card__price--regular">—</span>
+                </div>
+                <button class="bestsellers-card__btn" disabled>+ Ajouter au panier</button>
+              </div>
+            </div>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bestsellers",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Titre",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "header",
+      "content": "Espacement"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement haut",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement bas",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Produit",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

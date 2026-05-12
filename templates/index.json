@@ -1,0 +1,195 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_banner_hFTmLE": {
+      "type": "hero-banner",
+      "blocks": {
+        "slide_CNWMHH": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/content.png",
+            "image_overlay_opacity": 30,
+            "heading": "",
+            "heading_before": "Des gadgets qui",
+            "rotating_words": "simplifient,révolutionnent,transforment,modernisent",
+            "heading_after": "votre cuisine",
+            "rotating_speed": 3,
+            "heading_size": "hxl",
+            "subheading": "Des produits malins à moins de 20 €, livrés chez vous.",
+            "button_label": "Voir le catalogue",
+            "link": "",
+            "button_arrow": true,
+            "button_style_secondary": false,
+            "button_label_2": "Contact",
+            "link_2": "",
+            "button_2_style_secondary": true,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4",
+            "color_heading": "#ffffff",
+            "color_rotating_word": "#74b734",
+            "color_subheading": "#ffffff",
+            "color_btn1_bg": "#74b734",
+            "color_btn1_text": "#ffffff",
+            "color_btn1_border": "#74b734",
+            "color_btn2_text": "#74b734",
+            "color_btn2_border": "#74b734"
+          }
+        },
+        "slide_nJ7dVd": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/content2.png",
+            "image_overlay_opacity": 10,
+            "heading": "Éplucheurs, spiraliseurs, minuteurs ?",
+            "heading_before": "",
+            "rotating_words": "",
+            "heading_after": "",
+            "rotating_speed": 3,
+            "heading_size": "hxl",
+            "subheading": "On a ce qu'il vous faut.",
+            "button_label": "Shop maintenant",
+            "link": "",
+            "button_arrow": true,
+            "button_style_secondary": false,
+            "button_label_2": "En savoir plus",
+            "link_2": "",
+            "button_2_style_secondary": true,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1",
+            "color_heading": "#ffffff",
+            "color_rotating_word": "#74b734",
+            "color_subheading": "#ffffff",
+            "color_btn1_bg": "#74b734",
+            "color_btn1_text": "#ffffff",
+            "color_btn1_border": "#74b734",
+            "color_btn2_text": "#74b734",
+            "color_btn2_border": "#74b734"
+          }
+        },
+        "slide_cXdQAT": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/content3.png",
+            "image_overlay_opacity": 20,
+            "heading": "Qualité et praticité, <em>garanties.</em>",
+            "heading_before": "",
+            "rotating_words": "",
+            "heading_after": "",
+            "rotating_speed": 3,
+            "heading_size": "hxl",
+            "subheading": "Testés et sélectionnés pour vous.",
+            "button_label": "Découvrir",
+            "link": "",
+            "button_arrow": true,
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "link_2": "",
+            "button_2_style_secondary": true,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-2",
+            "color_heading": "#ffffff",
+            "color_rotating_word": "#74b734",
+            "color_subheading": "#ffffff",
+            "color_btn1_bg": "#74b734",
+            "color_btn1_text": "#ffffff",
+            "color_btn1_border": "#74b734",
+            "color_btn2_text": "#74b734",
+            "color_btn2_border": "#74b734"
+          }
+        }
+      },
+      "block_order": [
+        "slide_CNWMHH",
+        "slide_nJ7dVd",
+        "slide_cXdQAT"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "large",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Diaporama hero banner"
+      }
+    },
+    "bestsellers_rzecnE": {
+      "type": "bestsellers",
+      "blocks": {
+        "product_6G6JDM": {
+          "type": "product",
+          "settings": {
+            "product": "duo-d-eplucheurs-signature-acier-inox-bois-de-hetre"
+          }
+        },
+        "product_6j9KwT": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_7zQPMW": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_i9wRdB": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_frXJBM": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_eLqhLc": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_6G6JDM",
+        "product_6j9KwT",
+        "product_7zQPMW",
+        "product_i9wRdB",
+        "product_frXJBM",
+        "product_eLqhLc"
+      ],
+      "name": "Bestsellers",
+      "settings": {
+        "title": "Bestsellers",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "hero_banner_hFTmLE",
+    "bestsellers_rzecnE"
+  ]
+}

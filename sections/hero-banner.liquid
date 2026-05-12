@@ -1,0 +1,711 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
+  {%- style -%}
+    @media screen and (max-width: 749px) {
+      #Slider-{{ section.id }}::before,
+      #Slider-{{ section.id }} .media::before,
+      #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+    }
+    @media screen and (min-width: 750px) {
+      #Slider-{{ section.id }}::before,
+      #Slider-{{ section.id }} .media::before {
+        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+<style>
+  /* Mot mis en évidence (em) → vert de la charte */
+  .hero-banner-section-{{ section.id }} .banner__heading em {
+    color: #74B734;
+    font-style: normal;
+  }
+
+  /* Deux boutons côte à côte */
+  .hero-banner-section-{{ section.id }} .banner__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  /* Bouton primaire — vert plein */
+  .hero-banner-section-{{ section.id }} .button--primary {
+    background-color: #74B734;
+    border-color: #74B734;
+    color: #ffffff;
+  }
+  .hero-banner-section-{{ section.id }} .button--primary:hover {
+    background-color: #5a9228;
+    border-color: #5a9228;
+  }
+
+  /* Bouton secondaire — contour vert */
+  .hero-banner-section-{{ section.id }} .button--secondary {
+    background-color: transparent;
+    border-color: #74B734;
+    color: #74B734;
+  }
+  .hero-banner-section-{{ section.id }} .button--secondary:hover {
+    background-color: #74B734;
+    color: #ffffff;
+  }
+
+  /* ── Contrôles slideshow — overlay en bas de l'image ── */
+  .hero-banner-section-{{ section.id }} {
+    position: relative;
+  }
+  .hero-banner-section-{{ section.id }} .slideshow__controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    width: fit-content;
+  }
+
+  /* ── Mots rotatifs ── */
+  .rotating-word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+  }
+  .rotating-word {
+    display: inline-block;
+    color: #74B734;
+    font-style: normal;
+    animation: rwFadeIn 0.45s ease forwards;
+  }
+  .rotating-word.is-leaving {
+    animation: rwFadeOut 0.35s ease forwards;
+    position: absolute;
+  }
+  @keyframes rwFadeIn {
+    from { opacity: 0; transform: translateY(60%); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
+  @keyframes rwFadeOut {
+    from { opacity: 1; transform: translateY(0);    }
+    to   { opacity: 0; transform: translateY(-60%); }
+  }
+</style>
+
+<slideshow-component
+  class="slider-mobile-gutter hero-banner-section-{{ section.id }}{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
+  role="region"
+  aria-roledescription="Carousel"
+  aria-label="{{ section.settings.accessibility_info | escape }}"
+>
+
+  {%- comment -%} Contrôles toujours visibles (autoplay ON) {%- endcomment -%}
+  {%- if section.blocks.size > 1 -%}
+    <div class="slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
+      <button type="button" class="slider-button slider-button--prev" name="previous"
+        aria-label="Diapositive précédente" aria-controls="Slider-{{ section.id }}">
+        <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+      </button>
+
+      <div class="slider-counter slider-counter--{{ section.settings.slider_visual }}{% if section.settings.slider_visual == 'counter' or section.settings.slider_visual == 'numbers' %} caption{% endif %}">
+        {%- if section.settings.slider_visual == 'counter' -%}
+          <span class="slider-counter--current">1</span>
+          <span aria-hidden="true"> / </span>
+          <span class="slider-counter--total">{{ section.blocks.size }}</span>
+        {%- else -%}
+          <div class="slideshow__control-wrapper">
+            {%- for block in section.blocks -%}
+              <button
+                class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
+                aria-label="Diapositive {{ forloop.index }} sur {{ forloop.length }}"
+                aria-controls="Slider-{{ section.id }}"
+              >
+                {%- if section.settings.slider_visual == 'numbers' -%}
+                  {{ forloop.index -}}
+                {%- else -%}
+                  <span class="dot"></span>
+                {%- endif -%}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <button type="button" class="slider-button slider-button--next" name="next"
+        aria-label="Diapositive suivante" aria-controls="Slider-{{ section.id }}">
+        <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+      </button>
+
+    </div>
+  {%- endif -%}
+
+
+  {%- comment -%} Slides {%- endcomment -%}
+  <div
+    class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere{% if section.settings.show_text_below %} banner--mobile-bottom{% endif %}{% if section.blocks.first.settings.image == blank %} slideshow--placeholder{% endif %}"
+    id="Slider-{{ section.id }}"
+    aria-live="polite"
+    aria-atomic="true"
+    data-autoplay="{{ section.settings.auto_rotate }}"
+    data-speed="{{ section.settings.change_slides_speed }}"
+  >
+    {%- for block in section.blocks -%}
+      <style>
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after {
+          opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
+        }
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__heading,
+        #Slide-{{ section.id }}-{{ forloop.index }} .rotating-word-wrapper {
+          color: {{ block.settings.color_heading }};
+        }
+        #Slide-{{ section.id }}-{{ forloop.index }} .rotating-word {
+          color: {{ block.settings.color_rotating_word }};
+        }
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__text p {
+          color: {{ block.settings.color_subheading }};
+        }
+        #Slide-{{ section.id }}-{{ forloop.index }} .btn-s-primary {
+          background-color: {{ block.settings.color_btn1_bg }} !important;
+          color: {{ block.settings.color_btn1_text }} !important;
+          border-color: {{ block.settings.color_btn1_border }} !important;
+        }
+        #Slide-{{ section.id }}-{{ forloop.index }} .btn-s-primary:hover {
+          filter: brightness(0.88);
+        }
+        #Slide-{{ section.id }}-{{ forloop.index }} .btn-s-secondary {
+          background-color: transparent !important;
+          color: {{ block.settings.color_btn2_text }} !important;
+          border-color: {{ block.settings.color_btn2_border }} !important;
+        }
+        #Slide-{{ section.id }}-{{ forloop.index }} .btn-s-secondary:hover {
+          background-color: {{ block.settings.color_btn2_border }} !important;
+          color: {{ block.settings.color_btn1_bg }} !important;
+        }
+      </style>
+
+      <div
+        class="slideshow__slide grid__item grid--1-col slider__slide"
+        id="Slide-{{ section.id }}-{{ forloop.index }}"
+        {{ block.shopify_attributes }}
+        role="group"
+        aria-roledescription="Diapositive"
+        aria-label="{{ forloop.index }} sur {{ forloop.length }}"
+        tabindex="-1"
+      >
+        {%- comment -%} Image de fond {%- endcomment -%}
+        <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+          {%- if block.settings.image -%}
+            {%- liquid
+              assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
+              assign sizes = '100vw'
+              assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+              assign fetch_priority = 'auto'
+              if section.index == 1
+                assign fetch_priority = 'high'
+              endif
+            -%}
+            {%- if forloop.first -%}
+              {{ block.settings.image | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority }}
+            {%- else -%}
+              {{ block.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths }}
+            {%- endif -%}
+          {%- else -%}
+            {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
+            {%- if placeholder_slide == 1 -%}
+              {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- else -%}
+              {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Contenu texte + boutons {%- endcomment -%}
+        <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}">
+          <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
+
+            {%- if block.settings.rotating_words != blank and block.settings.heading_before != blank -%}
+              {%- assign rw_list = block.settings.rotating_words | split: ',' -%}
+              <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
+                {{- block.settings.heading_before | escape -}}
+                <span class="rotating-word-wrapper">
+                  <em class="rotating-word"
+                    data-words="{{ block.settings.rotating_words | escape }}"
+                    data-interval="{{ block.settings.rotating_speed | times: 1000 }}"
+                  >{{- rw_list.first | strip -}}</em>
+                </span>
+                {{- block.settings.heading_after | escape -}}
+              </h2>
+            {%- elsif block.settings.heading != blank -%}
+              <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
+                {{ block.settings.heading }}
+              </h2>
+            {%- endif -%}
+
+            {%- if block.settings.subheading != blank -%}
+              <div class="banner__text rte">
+                <p>{{ block.settings.subheading }}</p>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.button_label != blank or block.settings.button_label_2 != blank -%}
+              <div class="banner__buttons">
+                {%- if block.settings.button_label != blank -%}
+                  <a
+                    href="{{ block.settings.link | default: routes.root_url }}"
+                    class="button {% if block.settings.button_style_secondary %}button--secondary btn-s-secondary{% else %}button--primary btn-s-primary{% endif %}"
+                  >
+                    {{- block.settings.button_label | escape -}}
+                    {%- if block.settings.button_arrow -%}&nbsp;→{%- endif -%}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a
+                    href="{{ block.settings.link_2 | default: routes.root_url }}"
+                    class="button {% if block.settings.button_2_style_secondary %}button--secondary btn-s-secondary{% else %}button--primary btn-s-primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_2 | escape -}}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+</slideshow-component>
+
+{%- if request.design_mode -%}
+  <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<script>
+  (function () {
+    function initRotatingWords() {
+      document.querySelectorAll('.rotating-word').forEach(function (el) {
+        var words = el.getAttribute('data-words').split(',').map(function (w) { return w.trim(); });
+        if (words.length <= 1) return;
+
+        var interval  = parseInt(el.getAttribute('data-interval')) || 2500;
+        var animOut   = 350;
+        var current   = 0;
+
+        // Largeur fixe pour éviter le saut de layout
+        el.parentElement.style.minWidth = el.offsetWidth + 'px';
+
+        setInterval(function () {
+          el.classList.add('is-leaving');
+          setTimeout(function () {
+            current = (current + 1) % words.length;
+            el.textContent = words[current];
+            el.classList.remove('is-leaving');
+            // Met à jour la largeur min
+            el.parentElement.style.minWidth = el.offsetWidth + 'px';
+          }, animOut);
+        }, interval);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initRotatingWords);
+    } else {
+      initRotatingWords();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "full_bleed", "label": "Pleine largeur" },
+        { "value": "grid",       "label": "Avec marges" }
+      ],
+      "default": "full_bleed",
+      "label": "Mise en page"
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "options": [
+        { "value": "adapt_image", "label": "Adaptatif" },
+        { "value": "small",       "label": "Petit" },
+        { "value": "medium",      "label": "Moyen" },
+        { "value": "large",       "label": "Grand" }
+      ],
+      "default": "large",
+      "label": "Hauteur des slides"
+    },
+    {
+      "type": "select",
+      "id": "slider_visual",
+      "options": [
+        { "value": "dots",    "label": "Points" },
+        { "value": "counter", "label": "Compteur (1/3)" },
+        { "value": "numbers", "label": "Numéros" }
+      ],
+      "default": "dots",
+      "label": "Style des indicateurs"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Défilement automatique",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 9,
+      "step": 2,
+      "unit": "s",
+      "label": "Vitesse de défilement",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "image_behavior",
+      "options": [
+        { "value": "none",    "label": "Aucun" },
+        { "value": "ambient", "label": "Ambiant (zoom léger)" }
+      ],
+      "default": "none",
+      "label": "Comportement de l'image"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_below",
+      "label": "Afficher le texte sous l'image (mobile)",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "accessibility_info",
+      "label": "Description accessibilité",
+      "default": "Diaporama hero banner"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image de fond"
+        },
+        {
+          "type": "range",
+          "id": "image_overlay_opacity",
+          "min": 0,
+          "max": 80,
+          "step": 10,
+          "unit": "%",
+          "label": "Assombrissement",
+          "default": 30
+        },
+        {
+          "type": "header",
+          "content": "Texte"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Titre (sans mots rotatifs)",
+          "info": "Utilisé uniquement si les mots rotatifs ci-dessous sont vides. Tu peux mettre <em>mot</em> pour le colorer en vert.",
+          "default": "Des gadgets <em>malins</em>"
+        },
+        {
+          "type": "header",
+          "content": "Mots rotatifs (optionnel)"
+        },
+        {
+          "type": "text",
+          "id": "heading_before",
+          "label": "Phrase — avant le mot rotatif",
+          "info": "Laisser vide si pas de mots rotatifs sur ce slide"
+        },
+        {
+          "type": "text",
+          "id": "rotating_words",
+          "label": "Mots rotatifs (séparés par des virgules)",
+          "info": "Ex : simplifient,révolutionnent,transforment — laisser vide pour désactiver"
+        },
+        {
+          "type": "text",
+          "id": "heading_after",
+          "label": "Phrase — après le mot rotatif"
+        },
+        {
+          "type": "range",
+          "id": "rotating_speed",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "unit": "s",
+          "label": "Vitesse de rotation des mots",
+          "default": 3
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2",  "label": "Petit" },
+            { "value": "h1",  "label": "Moyen" },
+            { "value": "h0",  "label": "Grand" },
+            { "value": "hxl", "label": "Très grand" }
+          ],
+          "default": "hxl",
+          "label": "Taille du titre"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "label": "Sous-titre",
+          "default": "Des produits malins à moins de 20 €"
+        },
+        {
+          "type": "header",
+          "content": "Bouton 1"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texte",
+          "default": "Voir le catalogue"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_arrow",
+          "label": "Afficher la flèche →",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "label": "Style secondaire (contour)",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Bouton 2 (optionnel)"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Texte"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Lien"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_2_style_secondary",
+          "label": "Style secondaire (contour)",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Mise en page"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_text_box",
+          "label": "Fond derrière le texte",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "box_align",
+          "options": [
+            { "value": "top-left",      "label": "Haut gauche" },
+            { "value": "top-center",    "label": "Haut centre" },
+            { "value": "top-right",     "label": "Haut droite" },
+            { "value": "middle-left",   "label": "Milieu gauche" },
+            { "value": "middle-center", "label": "Milieu centre" },
+            { "value": "middle-right",  "label": "Milieu droite" },
+            { "value": "bottom-left",   "label": "Bas gauche" },
+            { "value": "bottom-center", "label": "Bas centre" },
+            { "value": "bottom-right",  "label": "Bas droite" }
+          ],
+          "default": "middle-center",
+          "label": "Position du contenu"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "options": [
+            { "value": "left",   "label": "Gauche" },
+            { "value": "center", "label": "Centre" },
+            { "value": "right",  "label": "Droite" }
+          ],
+          "default": "center",
+          "label": "Alignement du texte"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment_mobile",
+          "options": [
+            { "value": "left",   "label": "Gauche" },
+            { "value": "center", "label": "Centre" },
+            { "value": "right",  "label": "Droite" }
+          ],
+          "default": "center",
+          "label": "Alignement texte (mobile)"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Palette de couleurs",
+          "default": "scheme-4"
+        },
+        {
+          "type": "header",
+          "content": "Couleurs"
+        },
+        {
+          "type": "color",
+          "id": "color_heading",
+          "label": "Couleur du titre",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "color_rotating_word",
+          "label": "Couleur du mot rotatif",
+          "default": "#74B734"
+        },
+        {
+          "type": "color",
+          "id": "color_subheading",
+          "label": "Couleur du sous-titre",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "color_btn1_bg",
+          "label": "Bouton 1 — fond",
+          "default": "#74B734"
+        },
+        {
+          "type": "color",
+          "id": "color_btn1_text",
+          "label": "Bouton 1 — texte",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "color_btn1_border",
+          "label": "Bouton 1 — contour",
+          "default": "#74B734"
+        },
+        {
+          "type": "color",
+          "id": "color_btn2_text",
+          "label": "Bouton 2 — texte",
+          "default": "#74B734"
+        },
+        {
+          "type": "color",
+          "id": "color_btn2_border",
+          "label": "Bouton 2 — contour",
+          "default": "#74B734"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "heading_before": "Des gadgets qui",
+            "rotating_words": "simplifient,révolutionnent,transforment,modernisent",
+            "heading_after": " votre cuisine",
+            "rotating_speed": 3,
+            "subheading": "Des produits malins à moins de 20 €, livrés chez vous.",
+            "button_label": "Voir le catalogue",
+            "button_arrow": true,
+            "button_label_2": "Contact",
+            "button_2_style_secondary": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "image_overlay_opacity": 30,
+            "color_scheme": "scheme-4"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "rotating_words": "",
+            "heading": "Éplucheurs, spiraliseurs, minuteurs ?",
+            "subheading": "On a ce qu'il vous faut.",
+            "button_label": "Shop maintenant",
+            "button_arrow": true,
+            "button_label_2": "En savoir plus",
+            "button_2_style_secondary": true,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "image_overlay_opacity": 10,
+            "color_scheme": "scheme-1"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "rotating_words": "",
+            "heading": "Qualité et praticité, <em>garanties.</em>",
+            "subheading": "Testés et sélectionnés pour vous.",
+            "button_label": "Découvrir",
+            "button_arrow": true,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "image_overlay_opacity": 20,
+            "color_scheme": "scheme-2"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

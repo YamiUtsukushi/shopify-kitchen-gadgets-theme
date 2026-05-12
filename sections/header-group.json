@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement_bar_M6bW6h": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_MtV6Rg": {
+          "type": "announcement",
+          "settings": {
+            "text": "🍳 Les gadgets qui simplifient vraiment votre cuisine",
+            "link": ""
+          }
+        },
+        "announcement_NbKfbd": {
+          "type": "announcement",
+          "settings": {
+            "text": "💡 Des produits malins à moins de 20 €",
+            "link": ""
+          }
+        },
+        "announcement_FRmDJV": {
+          "type": "announcement",
+          "settings": {
+            "text": "⭐ Plus de 500 clients satisfaits en Europe",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_MtV6Rg",
+        "announcement_NbKfbd",
+        "announcement_FRmDJV"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "menu_font_size": 16,
+        "menu_font_weight": "700",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_M6bW6h",
+    "header"
+  ]
+}
