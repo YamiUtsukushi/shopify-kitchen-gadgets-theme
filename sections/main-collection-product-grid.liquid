@@ -315,6 +315,7 @@
     color: #2a2a2a;
     margin: 0;
     line-height: 1.3;
+    min-height: calc(0.9rem * 1.3 * 2);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -370,6 +371,77 @@
     cursor: not-allowed;
   }
 
+  /* ── Bouton filtre mobile ── */
+  .mobile-filter-toggle {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .mobile-filter-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2a2a2a;
+      cursor: pointer;
+      margin-bottom: 1.2rem;
+      transition: border-color 0.2s;
+    }
+    .mobile-filter-toggle:hover {
+      border-color: #74B734;
+      color: #74B734;
+    }
+    .mobile-filter-toggle svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* Sidebar mobile — panneau dépliable */
+    .collection-sidebar {
+      display: block;
+      position: static;
+      top: auto;
+      margin-bottom: 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      border-radius: 8px;
+      border: 1px solid #eeeeee;
+    }
+    .collection-sidebar.is-open {
+      max-height: 1200px;
+    }
+
+    /* Toolbar — empilée sur mobile */
+    .collection-toolbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    /* Tri — pleine largeur sur mobile */
+    .sort-select {
+      width: 100%;
+    }
+    .collection-toolbar__sort {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    /* .prod-card pleine largeur sur mobile */
+    .prod-card {
+      width: 100%;
+    }
+  }
+
   /* ── Pagination ── */
   .collection-pagination {
     display: flex;
@@ -410,6 +482,12 @@
     <div class="collection-layout">
 
       {%- comment -%} ── SIDEBAR FILTRES ── {%- endcomment -%}
+
+      <button class="mobile-filter-toggle" id="mobile-filter-toggle" aria-expanded="false" aria-controls="collection-sidebar">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 4h18v2H3V4zm3 7h12v2H6v-2zm4 7h4v2h-4v-2z"/></svg>
+        <span id="mobile-filter-label">Filtres</span>
+      </button>
+
       <aside class="collection-sidebar" id="collection-sidebar">
 
         <div class="sidebar-header">
@@ -711,6 +789,21 @@
   }
 
 })();
+</script>
+
+<script>
+  (function () {
+    var toggleBtn = document.getElementById('mobile-filter-toggle');
+    var sidebar   = document.getElementById('collection-sidebar');
+    var label     = document.getElementById('mobile-filter-label');
+    if (!toggleBtn || !sidebar) return;
+
+    toggleBtn.addEventListener('click', function () {
+      var isOpen = sidebar.classList.toggle('is-open');
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      label.textContent = isOpen ? 'Fermer les filtres' : 'Filtres';
+    });
+  })();
 </script>
 
 {% schema %}
