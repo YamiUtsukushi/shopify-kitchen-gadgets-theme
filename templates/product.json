@@ -11,79 +11,21 @@
   "sections": {
     "main": {
       "type": "main-product",
-      "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        }
-      },
-      "block_order": [
-        "vendor",
-        "title",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "share"
-      ],
       "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": true,
-        "enable_video_looping": false,
+        "suggestions_title": "How about?",
+        "accordion_1_title": "À propos du produit",
+        "accordion_1_content": "<p>Découvrez les caractéristiques, matériaux et dimensions de ce produit. Conçu pour simplifier votre quotidien en cuisine.</p>",
+        "accordion_2_title": "Livraison & retours",
+        "accordion_2_content": "<p>Livraison offerte dès 25 € d'achat. Délai estimé : 5 à 10 jours ouvrés. Retours acceptés sous 30 jours dans leur emballage d'origine.</p>",
+        "accordion_3_title": "Garantie & SAV",
+        "accordion_3_content": "<p>Tous nos produits bénéficient d'une garantie de 1 an. Pour toute question, contactez notre service client via la page Contact.</p>",
         "padding_top": 36,
         "padding_bottom": 12
       }
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
