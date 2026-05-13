@@ -77,6 +77,34 @@
     width: fit-content;
   }
 
+  /* ── Responsive mobile ── */
+  @media screen and (max-width: 749px) {
+
+    /* Titre — réduction selon classe */
+    .hero-banner-section-{{ section.id }} .banner__heading.hxl { font-size: 2.2rem; }
+    .hero-banner-section-{{ section.id }} .banner__heading.h0  { font-size: 1.9rem; }
+    .hero-banner-section-{{ section.id }} .banner__heading.h1  { font-size: 1.6rem; }
+    .hero-banner-section-{{ section.id }} .banner__heading.h2  { font-size: 1.3rem; }
+
+    /* Boutons — empilement vertical */
+    .hero-banner-section-{{ section.id }} .banner__buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-banner-section-{{ section.id }} .banner__buttons .button {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+
+    /* Contrôles overlay — plus compact */
+    .hero-banner-section-{{ section.id }} .slideshow__controls {
+      bottom: 0.75rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+
   /* ── Mots rotatifs ── */
   .rotating-word-wrapper {
     display: inline-block;
@@ -217,10 +245,24 @@
                 assign fetch_priority = 'high'
               endif
             -%}
-            {%- if forloop.first -%}
-              {{ block.settings.image | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority }}
+            {%- if block.settings.image_mobile != blank -%}
+              <picture>
+                <source
+                  media="(max-width: 749px)"
+                  srcset="{{ block.settings.image_mobile | image_url: width: 750 }}, {{ block.settings.image_mobile | image_url: width: 1100 }} 2x"
+                >
+                {%- if forloop.first -%}
+                  {{ block.settings.image | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority }}
+                {%- else -%}
+                  {{ block.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths }}
+                {%- endif -%}
+              </picture>
             {%- else -%}
-              {{ block.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths }}
+              {%- if forloop.first -%}
+                {{ block.settings.image | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority }}
+              {%- else -%}
+                {{ block.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths }}
+              {%- endif -%}
             {%- endif -%}
           {%- else -%}
             {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
@@ -423,7 +465,13 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image de fond"
+          "label": "Image de fond (desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image mobile (optionnel)",
+          "info": "Format portrait recommandé (ex: 750×1000px). Si vide, l'image desktop est utilisée."
         },
         {
           "type": "range",
