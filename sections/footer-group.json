@@ -13,7 +13,26 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "settings": {}
+      "settings": {
+        "logo_width": 120,
+        "mission_text": "Notre mission : rendre la cuisine du quotidien plus simple, plus fun et plus accessible — avec des gadgets malins livrés chez vous en quelques jours.",
+        "col2_heading": "BOUTIQUE",
+        "col2_menu": "footer",
+        "col3_heading": "INFOS",
+        "col3_menu": "menu-info",
+        "col4_heading": "AIDE",
+        "aide_icon": "🍳",
+        "aide_question": "Une question sur un produit ?",
+        "aide_contact_label": "Contactez-nous",
+        "aide_contact_url": "",
+        "show_payments_row": true,
+        "company_name": "LD Global CO",
+        "powered_by_text": "Commerce électronique propulsé par",
+        "instagram_url": "",
+        "tiktok_url": "",
+        "pinterest_url": "",
+        "facebook_url": ""
+      }
     }
   },
   "order": [
