@@ -250,11 +250,36 @@
       position: static;
     }
   }
+
+  /* ── Fil d'Ariane ── */
+  .contact-breadcrumb {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 1.2rem;
+  }
+  .contact-breadcrumb a {
+    color: #999;
+    text-decoration: none;
+  }
+  .contact-breadcrumb a:hover {
+    color: #74B734;
+    text-decoration: underline;
+  }
+  .contact-breadcrumb span[aria-hidden] {
+    margin: 0 0.3rem;
+  }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="contact-page-{{ section.id }}">
     <div class="page-width">
+
+      {%- comment -%} Fil d'Ariane {%- endcomment -%}
+      <nav class="contact-breadcrumb" aria-label="Breadcrumb">
+        <a href="{{ routes.root_url }}">Accueil</a>
+        <span aria-hidden="true"> / </span>
+        <span>{{ page.title }}</span>
+      </nav>
 
       {%- comment -%} En-tête {%- endcomment -%}
       <div class="contact-header">
