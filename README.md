@@ -1,12 +1,8 @@
-# 🍳 Shopify Theme — Kitchen Gadgets Store
+# 🍳 Shopify Theme — LD Global (Kitchen Gadgets Store)
 
-Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-commerce spécialisée dans les **gadgets de cuisine du quotidien** — des produits simples, malins et accessibles, livrés directement chez le client (dropshipping). Refonte complète du header, hero banner animé avec mots rotatifs, section Bestsellers, page catalogue avec filtres en accordéon, et charte graphique cohérente sur l'ensemble du thème.
+Thème Shopify Online Store 2.0 basé sur **Dawn**, conçu pour une boutique e-commerce spécialisée dans les **gadgets de cuisine du quotidien** — produits simples, malins et accessibles, livrés directement chez le client (dropshipping). Refonte complète du thème : header custom, hero banner animé, pages personnalisées (Accueil, Catalogue, Produit, À propos, FAQ, Contact), charte graphique cohérente et full responsive.
 
----
-
-## 🌐 Application déployée
-
-🔗 **[Voir la boutique en ligne](https://your-store.myshopify.com/)** *(à compléter)*
+🔗 **[Voir la boutique en ligne](https://ldglobalco.myshopify.com/)**
 
 ---
 
@@ -17,8 +13,9 @@ Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-comme
 | **Shopify Online Store 2.0** | Plateforme e-commerce |
 | **Liquid** | Moteur de templating Shopify |
 | **HTML5 / CSS3** | Markup sémantique, animations, responsive |
-| **JavaScript (Vanilla)** | Mots rotatifs, slideshow, timer |
+| **JavaScript (Vanilla)** | Cart drawer, carousel, filtres prix, mots rotatifs |
 | **Dawn (base theme)** | Thème Shopify officiel utilisé comme base |
+| **Figtree** | Police principale (Google Fonts) |
 
 ---
 
@@ -31,49 +28,117 @@ Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-comme
 
 ### 🔍 Header personnalisé
 - Logo à gauche · barre de recherche inline au centre · compte + panier à droite
-- Navigation en 2ème ligne centrée (police **Figtree** depuis Google Fonts)
-- Taille et graisse de la police configurables dans le customizer
+- Navigation en 2ème ligne centrée (police **Figtree**)
+- Soulignement du lien actif et au hover en vert `#36881f` (3px, offset 1rem)
 - Formulaire de recherche custom sans le sélecteur "All" de Dawn
+- Fix z-index sticky pour éviter le chevauchement avec le slideshow
 
 ### 🎬 Hero Banner (slideshow)
-- 3 slides avec images de fond, 2 boutons par slide
-- **Mots rotatifs animés** sur le slide 1 : `simplifient / révolutionnent / transforment / modernisent`
-- Contrôles Dawn natifs (points, flèches prev/next) en overlay sur l'image
-- Personnalisation complète par slide depuis le customizer : couleur du titre, sous-titre, boutons (fond, texte, contour)
-- Mot vert mis en valeur via balise `<em>` stylisée
+- Slides avec images de fond desktop + mobile indépendantes
+- **Mots rotatifs animés** sur le titre (animation fade-in/out CSS)
+- Contrôles slideshow (prev/next + dots) masqués sur mobile et tablette
+- Bouton autoplay caché (présent dans le DOM pour le JS Dawn) — fix bug d'autoplay
+- Personnalisation complète par slide : couleur titre, sous-titre, boutons (fond, texte, contour)
+- Mot en évidence via balise `<em>` stylisée en vert
 
-### 🛒 Section Bestsellers
-- Sélection manuelle de **6 produits** via le customizer (blocs individuels)
-- Cartes produits sur fond blanc avec padding image, zoom au hover
-- Affichage intelligent du prix : **prix barré + prix promo** si remise active
-- Bouton **"+ Ajouter au panier"** avec ajout direct (POST `/cart/add`)
-- Grille responsive : 6 colonnes → 3 → 2 selon la taille d'écran
+### 🏠 Page d'accueil — sections custom
 
-### 🗂️ Page Catalogue
-- **En-tête** : fil d'Ariane `Home / Catalogue`, titre configurable, sous-titre richtext 3 lignes
-- **Layout 2 colonnes** : sidebar filtres sticky à gauche + grille produits à droite
-- **5 filtres en accordéon** (chevron animé, texte majuscule + espacement lettres) :
-  - Disponibilité (En stock / Rupture de stock) via params natifs Shopify OS 2.0
-  - Prix — curseur double avec bouton "Appliquer" (`filter.v.price.gte/lte`)
-  - Catégorie — 6 tags (Éplucheurs, Spiraliseurs, Minuteurs, Découpe, Mesure, Rangement)
-  - Promotions — filtre tag `sale`
-  - Nouveautés — tri `created-descending`
-- **Barre de résultats** : nombre de produits + sélecteur de tri natif Shopify
-- **Grille 3 colonnes** avec les mêmes cartes que Bestsellers (prix barré, add to cart)
-- **Pagination** numérotée, responsive mobile (2 colonnes)
+#### Hero Home (`hero-home.liquid`)
+- Titre animé avec `clamp()` pour fluidité typographique
+- Grille de catégories (3 colonnes mobile, flex desktop) avec cercles image
+- CTA vert `#74B734` configurable depuis le customizer
+- Full responsive : tablette (cercles 88%) + mobile (padding, titre réduit)
 
-### 🎨 Charte graphique cohérente
-| Élément | Couleur |
-|---|---|
-| Boutons, accents | `#36881f` (vert) |
-| Titres | `#2a2a2a` (quasi-noir) |
-| Fond section 1 | `#FFFFFF` |
-| Fond section 2 | `#FDFDFD` |
-| Fond dark (footer, annonce) | `#2a2a2a` |
+#### Vitrine Collections (`collection-showcase.liquid`)
+- Mosaïque asymétrique 5 blocs (grille CSS 12 colonnes)
+- Effet zoom image au hover (`scale(1.05)`)
+- **Taille de titre et sous-titre réglables par bloc** depuis le customizer
+- Responsive : 2 colonnes tablette → 2 colonnes empilées mobile
+
+#### Mur Social (`social-wall.liquid`)
+- Grille mosaic 6 blocs avec `grid-template-areas`
+- Titre section blanc `clamp(2rem, 4vw, 6rem)` / sous-titre blanc 2rem
+- Overlay au hover, zoom image
+- Responsive : 2 colonnes tablette, 2 colonnes mobile
+
+#### Section Bestsellers (`bestsellers.liquid`)
+- 6 produits sélectionnés manuellement
+- Bouton "+ Ajouter au panier" → ouvre le cart drawer automatiquement
+- Grille responsive : 6 → 3 → 2 colonnes
+
+#### Avis & Confiance (`reviews-trust.liquid`)
+- Carousel scroll horizontal avec dots de navigation
+- **Dots intelligents** : nombre calculé selon les cartes visibles (desktop 3/vue → 2 dots)
+- Flèches prev/next masquées sur mobile
+- Stats configurables (chiffre + couleur + libellé)
+
+#### Split Image CTA (`split-image-cta.liquid`)
+- Section 2 colonnes image/texte avec CTA
+
+### 🗂️ Page Catalogue (`main-collection-product-grid.liquid`)
+- En-tête : fil d'Ariane + titre + sous-titre richtext
+- **Layout sidebar filtres** (sticky desktop) + grille produits
+- **5 filtres en accordéon** :
+  - Disponibilité · Prix (curseur 0–200€) · Catégorie · Promotions · Nouveautés
+- **Toolbar** : bouton "Filtres" à gauche (tablette/mobile) + sélecteur tri à droite
+- Bouton filtres avec chevron animé et état actif en vert
+- Grille 3 colonnes desktop → 3 tablette → 2 mobile
+- Pagination numérotée
+
+### 📦 Page Produit (`main-product.liquid`)
+- Galerie image principale + miniatures
+- Sélecteur de variante, quantité, bouton ajout panier → cart drawer
+- Section suggestions produits similaires avec add to cart
+- Full responsive tablette et mobile
+
+### 🛒 Cart Drawer custom (`cart-drawer.liquid`)
+- Stepper quantité custom (▲/▼)
+- Section upsell "Vous aimerez aussi"
+- Checkbox conditions générales
+- **Fix bug panier vide** : suppression de la classe `is-empty` sur `<cart-drawer>` avant `renderContents()` pour éviter l'affichage de l'état vide lors du premier ajout
+- Auto-ouverture du drawer sur tous les boutons "Ajouter au panier" (sections customs) via intercepteur global dans `theme.liquid`
+
+### 📖 Page À propos (`page-about.liquid`)
+- Hero banner pleine largeur avec overlay
+- 3 sections split image/texte (avec effet de chevauchement de carte)
+- Stats sombres (fond configurable, 2 colonnes)
+- Grille avis clients 2 colonnes
+- Full responsive tablette et mobile
+
+### ❓ Page FAQ (`page-faq.liquid`)
+- Hero bannière configurable
+- Layout 2 colonnes : sidebar sticky + panel accordéon
+- **Recherche en temps réel** par question (filtrage JS)
+- Catégories avec icônes PNG uploadables depuis le customizer
+- Icône sidebar et icône aide en `image_picker` (dimensions recommandées affichées)
+- Sidebar non-sticky sur tablette/mobile (défile normalement)
+- Bannière CTA en bas (couleur, texte, lien configurables)
+
+### 📩 Page Contact (`contact-form.liquid`)
+- Formulaire avec champs Nom, Email, Sujet (select), Message
+- Colonne droite : support client, email direct, engagements (3 icônes PNG uploadables)
+- Textes des engagements éditables dans le customizer
+- Bannière CTA identique à la FAQ
+- Textes de la colonne info augmentés pour meilleure lisibilité
 
 ---
 
-## 🚀 Installation rapide
+## 🎨 Charte graphique
+
+| Élément | Valeur |
+|---|---|
+| **Vert principal** | `#74B734` |
+| **Vert foncé / hover** | `#36881f` / `#5a9228` |
+| **Quasi-noir titres** | `#2a2a2a` |
+| **Texte corps** | `#444` / `#555` |
+| **Fond clair** | `#faf7f4` / `#fdfdfd` |
+| **Fond sombre** | `#2a2a2a` |
+| **Page width** | `1400px` |
+| **Police** | Figtree (Google Fonts) |
+
+---
+
+## 🚀 Installation
 
 ### Prérequis
 - Compte Shopify (boutique de test ou plan Partner)
@@ -82,17 +147,19 @@ Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-comme
 
 ### Méthode 1 — Upload ZIP via l'admin Shopify
 1. Télécharge le repo : `Code` → `Download ZIP`
-2. Dans ton admin : **Boutique en ligne → Thèmes → Ajouter un thème → Téléverser un fichier ZIP**
+2. Dans l'admin : **Boutique en ligne → Thèmes → Ajouter un thème → Téléverser un fichier ZIP**
 3. Active le thème
 
-### Méthode 2 — Via Shopify CLI (recommandée pour dev)
+### Méthode 2 — Via Shopify CLI (recommandée)
 ```bash
-# Cloner le repo
-git clone https://github.com/<ton-username>/shopify-kitchen-gadgets-theme.git
+git clone https://github.com/YamiUtsukushi/shopify-kitchen-gadgets-theme.git
 cd shopify-kitchen-gadgets-theme
 
-# Lancer le serveur de développement (hot reload)
-shopify theme dev --store=ta-boutique.myshopify.com
+# Serveur de développement avec hot reload
+shopify theme dev --store=ldglobalco.myshopify.com
+
+# Pousser vers la boutique
+shopify theme push
 ```
 
 ---
@@ -101,47 +168,60 @@ shopify theme dev --store=ta-boutique.myshopify.com
 
 ```
 .
-├── sections/
-│   ├── announcement-bar.liquid   # Barre d'annonce animée (3 messages rotatifs)
-│   ├── header.liquid             # Header custom (search inline, Figtree, flex layout)
-│   ├── hero-banner.liquid        # Slideshow hero avec mots rotatifs et couleurs par slide
-│   ├── bestsellers.liquid              # Section bestsellers (6 produits manuels + add to cart)
-│   ├── main-collection-banner.liquid   # En-tête page catalogue (fil d'Ariane, titre, sous-titre)
-│   ├── main-collection-product-grid.liquid  # Grille catalogue (filtres accordéon + 3 colonnes)
-│   └── ...                             # Sections Dawn natives conservées
-├── snippets/
-│   ├── header-dropdown-menu.liquid
-│   ├── header-search.liquid
-│   └── ...
-├── assets/                       # CSS, JS, images, icônes
+├── assets/                             # CSS, JS, icônes SVG
+│   ├── base.css                        # Styles globaux Dawn
+│   ├── cart-drawer.js                  # Logique cart drawer Dawn
+│   └── component-slideshow.css         # Styles slideshow
 ├── config/
-│   ├── settings_data.json        # Charte couleur configurée (schemes 1–5)
+│   ├── settings_data.json              # Charte couleur + page_width 1400px
 │   └── settings_schema.json
-├── templates/                    # Templates de pages
-├── locales/                      # Fichiers de traduction
-└── README.md
+├── layout/
+│   └── theme.liquid                    # Layout principal + intercepteur cart global
+├── sections/
+│   ├── announcement-bar.liquid         # Barre d'annonce animée
+│   ├── header.liquid                   # Header custom (search, Figtree, soulignement vert)
+│   ├── hero-banner.liquid              # Slideshow hero (mots rotatifs, autoplay fix)
+│   ├── hero-home.liquid                # Hero page d'accueil (catégories, CTA vert)
+│   ├── bestsellers.liquid              # Bestsellers (6 produits, cart drawer)
+│   ├── collection-showcase.liquid      # Vitrine mosaïque 5 blocs (zoom hover, tailles custom)
+│   ├── social-wall.liquid              # Mur social grille mosaic 6 blocs
+│   ├── reviews-trust.liquid            # Avis carousel (dots intelligents, stats)
+│   ├── split-image-cta.liquid          # Section split image/texte CTA
+│   ├── main-collection-banner.liquid   # En-tête page catalogue
+│   ├── main-collection-product-grid.liquid  # Catalogue (filtres, tri, 3 col, toolbar)
+│   ├── main-product.liquid             # Page produit (galerie, variantes, suggestions)
+│   ├── cart-drawer.liquid              # (Section) Appel du snippet cart-drawer
+│   ├── page-about.liquid               # Page À propos (hero, splits, stats, avis)
+│   ├── page-faq.liquid                 # Page FAQ (accordéon, recherche, icônes PNG)
+│   └── contact-form.liquid             # Page Contact (formulaire, infos, CTA)
+├── snippets/
+│   ├── cart-drawer.liquid              # Cart drawer custom (stepper, upsell, CGV)
+│   └── ...
+├── templates/
+│   ├── index.json
+│   ├── page.about.json
+│   ├── page.faq.json
+│   ├── page.contact.json
+│   └── ...
+└── locales/
 ```
 
 ---
 
-## 📸 Aperçus
-
-> 💡 *Screenshots à venir*
-
-| Desktop | Mobile |
-|---|---|
-| *(prochainement)* | *(prochainement)* |
-
----
 
 ## 🗺️ Roadmap
 
-- [x] Page collection avec filtres (catégories, prix, disponibilité, promotions, nouveautés)
-- [ ] Section "Comment ça marche" (3 étapes illustrées)
-- [ ] Section avis clients avec étoiles
-- [ ] Bouton pause avec timer animé sur le hero banner
+- [x] Header custom avec recherche inline
+- [x] Hero banner avec mots rotatifs et slideshow
+- [x] Page catalogue avec filtres et tri
+- [x] Cart drawer auto-open sur tous les boutons
+- [x] Responsive complet tablette + mobile
+- [x] Pages personnalisées : À propos, FAQ, Contact
+- [x] Nouvelles sections : Vitrine, Mur Social, Avis, Split CTA
 - [ ] Optimisation Lighthouse / Core Web Vitals
 - [ ] Mode sombre
+- [ ] Timer animé sur le hero banner
+- [ ] Section "Comment ça marche"
 
 ---
 
@@ -155,7 +235,7 @@ shopify theme dev --store=ta-boutique.myshopify.com
 
 ## 📝 Licence
 
-Ce projet est sous licence **MIT**. Voir le fichier `LICENSE` pour plus de détails.
+Ce projet est sous licence **MIT**.
 > Le thème Dawn (base) est sous licence MIT par Shopify Inc.
 
 ---
