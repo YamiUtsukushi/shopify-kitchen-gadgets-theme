@@ -37,13 +37,13 @@
             "text_alignment_mobile": "center",
             "color_scheme": "scheme-4",
             "color_heading": "#ffffff",
-            "color_rotating_word": "#74b734",
+            "color_rotating_word": "#36881f",
             "color_subheading": "#ffffff",
-            "color_btn1_bg": "#74b734",
+            "color_btn1_bg": "#36881f",
             "color_btn1_text": "#ffffff",
-            "color_btn1_border": "#74b734",
-            "color_btn2_text": "#74b734",
-            "color_btn2_border": "#74b734"
+            "color_btn1_border": "#36881f",
+            "color_btn2_text": "#36881f",
+            "color_btn2_border": "#36881f"
           }
         },
         "slide_nJ7dVd": {
@@ -71,13 +71,13 @@
             "text_alignment_mobile": "center",
             "color_scheme": "scheme-1",
             "color_heading": "#ffffff",
-            "color_rotating_word": "#74b734",
+            "color_rotating_word": "#36881f",
             "color_subheading": "#ffffff",
-            "color_btn1_bg": "#74b734",
+            "color_btn1_bg": "#36881f",
             "color_btn1_text": "#ffffff",
-            "color_btn1_border": "#74b734",
-            "color_btn2_text": "#74b734",
-            "color_btn2_border": "#74b734"
+            "color_btn1_border": "#36881f",
+            "color_btn2_text": "#36881f",
+            "color_btn2_border": "#36881f"
           }
         },
         "slide_cXdQAT": {
@@ -105,13 +105,13 @@
             "text_alignment_mobile": "center",
             "color_scheme": "scheme-2",
             "color_heading": "#ffffff",
-            "color_rotating_word": "#74b734",
+            "color_rotating_word": "#36881f",
             "color_subheading": "#ffffff",
-            "color_btn1_bg": "#74b734",
+            "color_btn1_bg": "#36881f",
             "color_btn1_text": "#ffffff",
-            "color_btn1_border": "#74b734",
-            "color_btn2_text": "#74b734",
-            "color_btn2_border": "#74b734"
+            "color_btn1_border": "#36881f",
+            "color_btn2_text": "#36881f",
+            "color_btn2_border": "#36881f"
           }
         }
       },
@@ -186,10 +186,404 @@
         "padding_top": 48,
         "padding_bottom": 48
       }
+    },
+    "collection_showcase_3dkGxh": {
+      "type": "collection-showcase",
+      "blocks": {
+        "item_g7NYq9": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_18_58_03.png",
+            "title": "Éplucheurs conçus pour aller à l'essentiel.",
+            "text_color": "light",
+            "button_label": "Éplucheurs",
+            "button_link": ""
+          }
+        },
+        "item_dp7Cfe": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_01_32.png",
+            "title": "Spiralisez vos idées.",
+            "text_color": "light",
+            "button_label": "Spiralisateurs",
+            "button_link": ""
+          }
+        },
+        "item_q4kArj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_02_53.png",
+            "title": "Le temps parfait, à chaque fois.",
+            "text_color": "dark",
+            "button_label": "Minuteurs",
+            "button_link": ""
+          }
+        },
+        "item_jffWj6": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_05_13.png",
+            "title": "Coupez, tranchez, gagnez du temps.",
+            "text_color": "dark",
+            "button_label": "Découpe",
+            "button_link": ""
+          }
+        },
+        "item_fCi7iJ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_07_56.png",
+            "title": "Mixez votre quotidien.",
+            "text_color": "light",
+            "button_label": "Mixeur",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_g7NYq9",
+        "item_dp7Cfe",
+        "item_q4kArj",
+        "item_jffWj6",
+        "item_fCi7iJ"
+      ],
+      "name": "Vitrine collections",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "hero_home_TzFTin": {
+      "type": "hero-home",
+      "blocks": {
+        "category_yYbDVH": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/1_0e201dcf-9465-459f-96d0-af842f49422a.png",
+            "label": "Éplucheurs",
+            "circle_color": "#d8f0d0",
+            "link": ""
+          }
+        },
+        "category_wYxhQG": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/2.png",
+            "label": "Spiralisateurs",
+            "circle_color": "#e8d8f5",
+            "link": ""
+          }
+        },
+        "category_cYbUVq": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/3.png",
+            "label": "Minuteurs",
+            "circle_color": "#d0e8f5",
+            "link": ""
+          }
+        },
+        "category_p8h8fP": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/4.png",
+            "label": "Découpe",
+            "circle_color": "#fde8c8",
+            "link": ""
+          }
+        },
+        "category_tqcz6z": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/5.png",
+            "label": "Mixeurs",
+            "circle_color": "#d0f0e8",
+            "link": ""
+          }
+        },
+        "category_Qy6G6J": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/6.png",
+            "label": "Ustensiles",
+            "circle_color": "#fcd8d8",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_yYbDVH",
+        "category_wYxhQG",
+        "category_cYbUVq",
+        "category_p8h8fP",
+        "category_tqcz6z",
+        "category_Qy6G6J"
+      ],
+      "name": "Hero — Accueil",
+      "settings": {
+        "tagline": "Simplifiez votre cuisine au quotidien",
+        "title": "LD GLOBAL CO.",
+        "description": "<p>Des accessoires de cuisine pratiques pour gagner du temps au quotidien. Découvrez une sélection d'éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles pensés pour rendre la préparation plus simple, rapide et agréable.</p>",
+        "cta_label": "Découvrir nos produits",
+        "cta_link": "",
+        "bg_color": "#f5f3ee",
+        "circle_size": 90,
+        "icon_size": 55,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "social_wall_eqE8wJ": {
+      "type": "social-wall",
+      "blocks": {
+        "item_EzqzM3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_48_02.png",
+            "social_network": "instagram",
+            "title": "L'éplucheur qui change tout au quotidien.",
+            "title_size": 20,
+            "title_color": "#ffffff",
+            "description": "Simple. Rapide. Efficace.",
+            "desc_size": 15,
+            "desc_color": "#eeeeee",
+            "link": ""
+          }
+        },
+        "item_P8k7Nb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_52_33.png",
+            "social_network": "tiktok",
+            "title": "Des repas sains et créatifs en quelques tours !",
+            "title_size": 30,
+            "title_color": "#ffffff",
+            "description": "Spiralisez, inspirez, régalez-vous.",
+            "desc_size": 18,
+            "desc_color": "#eeeeee",
+            "link": ""
+          }
+        },
+        "item_9Dd9Lt": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_53_30.png",
+            "social_network": "pinterest",
+            "title": "Le minuteur indispensable pour des cuissons parfaites.",
+            "title_size": 20,
+            "title_color": "#ffffff",
+            "description": "Simple & précis.",
+            "desc_size": 15,
+            "desc_color": "#eeeeee",
+            "link": ""
+          }
+        },
+        "item_9Urp3y": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_55_12.png",
+            "social_network": "tiktok",
+            "title": "Hachez en un geste, gagnez du temps chaque jour.",
+            "title_size": 20,
+            "title_color": "#ffffff",
+            "description": "Compact. Puissant. Pratique.",
+            "desc_size": 15,
+            "desc_color": "#eeeeee",
+            "link": ""
+          }
+        },
+        "item_3ELQeH": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_57_22.png",
+            "social_network": "instagram",
+            "title": "Les bons outils font toute la différence.",
+            "title_size": 20,
+            "title_color": "#ffffff",
+            "description": "Équipez votre cuisine comme un pro.",
+            "desc_size": 15,
+            "desc_color": "#eeeeee",
+            "link": ""
+          }
+        },
+        "item_qx7kQ9": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_19_59_34.png",
+            "social_network": "facebook",
+            "title": "Mixez, savourez, recommencez.",
+            "title_size": 20,
+            "title_color": "#ffffff",
+            "description": "Des smoothies maison en un clin d'œil.",
+            "desc_size": 15,
+            "desc_color": "#eeeeee",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_EzqzM3",
+        "item_P8k7Nb",
+        "item_9Dd9Lt",
+        "item_9Urp3y",
+        "item_3ELQeH",
+        "item_qx7kQ9"
+      ],
+      "name": "Mur social",
+      "settings": {
+        "title": "@ldglobalco",
+        "subtitle": "Retrouvez nos dernières idées cuisine sur nos réseaux.",
+        "instagram_url": "",
+        "tiktok_url": "",
+        "facebook_url": "",
+        "pinterest_url": "",
+        "bg_color": "#2a2a2a",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "reviews_trust_m7xnDW": {
+      "type": "reviews-trust",
+      "blocks": {
+        "stat_LxCtGU": {
+          "type": "stat",
+          "settings": {
+            "label_top": "PLUS DE",
+            "number": "142k",
+            "number_color": "#f97316",
+            "label_bottom": "produits vendus"
+          }
+        },
+        "stat_DwHBqd": {
+          "type": "stat",
+          "settings": {
+            "label_top": "AVEC",
+            "number": "95%",
+            "number_color": "#a855f7",
+            "label_bottom": "d'avis positifs"
+          }
+        },
+        "review_HGwHCn": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Pratique et conforme",
+            "review_body": "J’ai commandé un éplucheur et un accessoire de découpe. Les produits sont conformes aux photos, simples à utiliser et efficaces pour le quotidien.",
+            "avatar": "shopify://shop_images/c9cb9fe34a6470bc4812c54f096f9dcf.jpg",
+            "author_name": "Agent Tout Lucky",
+            "author_location": "Paris, France"
+          }
+        },
+        "review_B46VTY": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Bon rapport qualité-prix",
+            "review_body": "Les prix sont accessibles et les produits font bien le travail. J’ai surtout apprécié le côté pratique pour gagner du temps en cuisine.",
+            "avatar": "shopify://shop_images/10-choses-savoir-roronoa-zoro-boutique-one-piece-11.jpg",
+            "author_name": "Akkun",
+            "author_location": "Paris, France"
+          }
+        },
+        "review_UcPpAk": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Commande simple",
+            "review_body": "Site clair, commande rapide et produits bien reçus. Les accessoires correspondent à ce que j’attendais.",
+            "avatar": "shopify://shop_images/MjAyNjA1YWQ1ODk5ZGEzODIwNWQ3NmE2NzhjNTM2NTU4YmYyNGE.webp",
+            "author_name": "Rougon",
+            "author_location": "Paris, France"
+          }
+        },
+        "review_hHLXBT": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Utile tous les jours",
+            "review_body": "Le spiraliseur est facile à prendre en main et vraiment pratique pour préparer des légumes rapidement. Très bonne surprise",
+            "avatar": "shopify://shop_images/a-la-chasse-aux-panoramas.jpg",
+            "author_name": "Shishi",
+            "author_location": "Paris, France"
+          }
+        },
+        "review_wkQbpf": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Produits très pratiques",
+            "review_body": "J'ai commandé plusieurs accessoires de cuisine et la qualité est au rendez-vous. Mon éplucheur est super efficace et la livraison a été rapide.",
+            "avatar": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_33_02.png",
+            "author_name": "Canna",
+            "author_location": "Paris, France"
+          }
+        },
+        "review_qQQEke": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Service au top",
+            "review_body": "Commande simple, suivi clair et produits conformes aux photos. Le minuteur et le découpe-légumes me font gagner un vrai temps au quotidien.",
+            "avatar": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_30_10.png",
+            "author_name": "Gintou",
+            "author_location": "Lyon, France"
+          }
+        },
+        "review_zDLjeU": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Je recommande !",
+            "review_body": "Très bonne expérience d'achat. Les produits sont de qualité et le service client est réactif. Je reviendrai sûrement.",
+            "avatar": "shopify://shop_images/e3438987-e1a4-4d77-a05b-28fb64a68712.png",
+            "author_name": "Miralyz",
+            "author_location": "Bordeaux, France"
+          }
+        },
+        "review_BKfzYF": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Excellent rapport qualité/prix",
+            "review_body": "Le spiraliseur est parfait pour mes recettes healthy. Facile à utiliser et à nettoyer. Vraiment top !",
+            "avatar": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_35_17.png",
+            "author_name": "Teoapa",
+            "author_location": "Marseille, France"
+          }
+        }
+      },
+      "block_order": [
+        "stat_LxCtGU",
+        "stat_DwHBqd",
+        "review_HGwHCn",
+        "review_B46VTY",
+        "review_UcPpAk",
+        "review_hHLXBT",
+        "review_wkQbpf",
+        "review_qQQEke",
+        "review_zDLjeU",
+        "review_BKfzYF"
+      ],
+      "name": "Avis & confiance",
+      "settings": {
+        "title": "Pourquoi nous choisir ?",
+        "subtitle": "Vous êtes entre de bonnes mains.",
+        "bg_color": "#fdf8f4",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "hero_banner_hFTmLE",
-    "bestsellers_rzecnE"
+    "bestsellers_rzecnE",
+    "collection_showcase_3dkGxh",
+    "hero_home_TzFTin",
+    "social_wall_eqE8wJ",
+    "reviews_trust_m7xnDW"
   ]
 }

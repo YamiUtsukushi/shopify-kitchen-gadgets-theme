@@ -6,6 +6,7 @@
     background-color: #fdfdfd;
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    font-family: 'Figtree', sans-serif;
   }
 
   @media screen and (max-width: 749px) {
@@ -60,7 +61,7 @@
 
   .sidebar-header__clear {
     font-size: 0.75rem;
-    color: #74B734;
+    color: #36881f;
     text-decoration: none;
     font-weight: 500;
   }
@@ -121,13 +122,13 @@
     gap: 0.5rem;
     padding: 0.3rem 0;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 1.2rem;
     color: #444;
   }
   .filter-option input[type="checkbox"] {
     width: 15px;
     height: 15px;
-    accent-color: #74B734;
+    accent-color: #36881f;
     cursor: pointer;
     flex-shrink: 0;
   }
@@ -154,7 +155,7 @@
   .price-range-fill {
     position: absolute;
     height: 100%;
-    background: #74B734;
+    background: #36881f;
     border-radius: 2px;
   }
 
@@ -176,7 +177,7 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    background: #74B734;
+    background: #36881f;
     border-radius: 50%;
     cursor: pointer;
     pointer-events: all;
@@ -186,7 +187,7 @@
   .price-range-inputs input[type="range"]::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background: #74B734;
+    background: #36881f;
     border-radius: 50%;
     cursor: pointer;
     pointer-events: all;
@@ -197,7 +198,7 @@
   .price-apply-btn {
     margin-top: 0.8rem;
     width: 100%;
-    background: #74B734;
+    background: #36881f;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -217,36 +218,86 @@
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #eeeeee;
-    flex-wrap: wrap;
     gap: 0.8rem;
   }
 
-  .collection-toolbar__count {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  .collection-toolbar__count strong {
-    color: #2a2a2a;
-    font-weight: 700;
+  /* ── Bouton Filtres (toolbar) ── */
+  .coll-filter-btn {
+    display: none;
   }
 
+  @media screen and (max-width: 989px) {
+    .coll-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #ffffff;
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #2a2a2a;
+      cursor: pointer;
+      font-family: 'Figtree', sans-serif;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .coll-filter-btn:hover,
+    .coll-filter-btn[aria-expanded="true"] {
+      border-color: #36881f;
+      color: #36881f;
+    }
+    .coll-filter-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+    .coll-filter-btn__chevron {
+      font-size: 0.7rem;
+      transition: transform 0.25s;
+    }
+    .coll-filter-btn[aria-expanded="true"] .coll-filter-btn__chevron {
+      transform: rotate(180deg);
+    }
+  }
+
+  /* ── Sort ── */
   .collection-toolbar__sort {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: #444;
+    gap: 0;
+    background: #ffffff;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
   }
-
+  .collection-toolbar__sort label {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #555;
+    white-space: nowrap;
+    border-right: 1px solid #eee;
+    background: #f9f9f9;
+    line-height: 1;
+  }
   .sort-select {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 0.35rem 2rem 0.35rem 0.7rem;
-    font-size: 0.85rem;
+    border: none;
+    border-radius: 0;
+    padding: 0.5rem 2rem 0.5rem 0.7rem;
+    font-size: 0.88rem;
+    font-family: 'Figtree', sans-serif;
     color: #2a2a2a;
-    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 0.7rem center;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 0.6rem center;
     appearance: none;
     cursor: pointer;
+    outline: none;
+  }
+  .sort-select:focus {
+    box-shadow: none;
+    outline: none;
   }
 
   /* ── Grille produits 3 colonnes ── */
@@ -310,19 +361,19 @@
   }
 
   .coll-card__title {
-    font-size: 0.9rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #2a2a2a;
     margin: 0;
     line-height: 1.3;
-    min-height: calc(0.9rem * 1.3 * 2);
+    min-height: calc(1.4rem * 1.3 * 2);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-decoration: none;
   }
-  .coll-card__title:hover { color: #74B734; }
+  .coll-card__title:hover { color: #36881f; }
 
   .coll-card__price {
     display: flex;
@@ -331,17 +382,17 @@
     flex-wrap: wrap;
   }
   .coll-card__price--regular {
-    font-size: 0.95rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: #2a2a2a;
   }
   .coll-card__price--compare {
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     color: #999;
     text-decoration: line-through;
   }
   .coll-card__price--sale {
-    font-size: 0.95rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #e53e3e;
   }
@@ -349,12 +400,12 @@
   .coll-card__btn {
     margin-top: auto;
     width: 100%;
-    background-color: #74B734;
+    background-color: #36881f;
     color: #ffffff;
-    border: 2px solid #74B734;
+    border: 2px solid #36881f;
     border-radius: 4px;
-    padding: 0.6rem 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.85rem 0.8rem;
+    font-size: 1.25rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s, border-color 0.2s;
@@ -371,44 +422,13 @@
     cursor: not-allowed;
   }
 
-  /* ── Bouton filtre mobile ── */
-  .mobile-filter-toggle {
-    display: none;
-  }
-
   @media screen and (max-width: 989px) {
-    .mobile-filter-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #ffffff;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 0.55rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #2a2a2a;
-      cursor: pointer;
-      margin-bottom: 1.2rem;
-      transition: border-color 0.2s;
-    }
-    .mobile-filter-toggle:hover {
-      border-color: #74B734;
-      color: #74B734;
-    }
-    .mobile-filter-toggle svg {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
-      flex-shrink: 0;
-    }
-
-    /* Sidebar mobile — panneau dépliable */
+    /* Sidebar — panneau dépliable sous la toolbar */
     .collection-sidebar {
       display: block;
       position: static;
       top: auto;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease;
@@ -418,28 +438,79 @@
     .collection-sidebar.is-open {
       max-height: 1200px;
     }
-
-    /* Toolbar — empilée sur mobile */
-    .collection-toolbar {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    /* Tri — pleine largeur sur mobile */
-    .sort-select {
-      width: 100%;
-    }
-    .collection-toolbar__sort {
-      width: 100%;
-    }
   }
 
-  @media screen and (max-width: 749px) {
-    /* .prod-card pleine largeur sur mobile */
-    .prod-card {
-      width: 100%;
+  /* ── Tablette (750px – 989px) ── */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .product-grid-3col {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
     }
+
+    .coll-card__body {
+      padding: 0.75rem;
+      gap: 0.4rem;
+    }
+    .coll-card__title {
+      font-size: 1.2rem;
+      min-height: calc(1.2rem * 1.3 * 2);
+    }
+    .coll-card__price--regular,
+    .coll-card__price--sale {
+      font-size: 1.2rem;
+    }
+    .coll-card__price--compare {
+      font-size: 1rem;
+    }
+    .coll-card__btn {
+      font-size: 1.05rem;
+      padding: 0.7rem 0.6rem;
+    }
+    .coll-card__image-wrapper {
+      padding: 0.75rem;
+    }
+
+    .collection-toolbar__count { font-size: 1.1rem; }
+    .collection-toolbar__sort  { font-size: 1.05rem; }
+    .sort-select               { font-size: 1.05rem; }
+  }
+
+  /* ── Mobile (< 750px) ── */
+  @media screen and (max-width: 749px) {
+    .product-grid-3col {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.7rem;
+    }
+
+    .coll-card__body {
+      padding: 0.65rem;
+      gap: 0.35rem;
+    }
+    .coll-card__title {
+      font-size: 1rem;
+      min-height: calc(1rem * 1.3 * 2);
+    }
+    .coll-card__price--regular,
+    .coll-card__price--sale {
+      font-size: 1rem;
+    }
+    .coll-card__price--compare {
+      font-size: 0.85rem;
+    }
+    .coll-card__btn {
+      font-size: 0.9rem;
+      padding: 0.6rem 0.5rem;
+    }
+    .coll-card__image-wrapper {
+      padding: 0.6rem;
+    }
+
+    .collection-toolbar {
+      margin-bottom: 1rem;
+    }
+    .collection-toolbar__count { font-size: 1rem; }
+    .collection-toolbar__sort  { font-size: 0.95rem; }
+    .sort-select               { font-size: 0.95rem; }
   }
 
   /* ── Pagination ── */
@@ -465,12 +536,12 @@
     transition: all 0.2s;
   }
   .collection-pagination a:hover {
-    border-color: #74B734;
-    color: #74B734;
+    border-color: #36881f;
+    color: #36881f;
   }
   .collection-pagination .current {
-    background: #74B734;
-    border-color: #74B734;
+    background: #36881f;
+    border-color: #36881f;
     color: #fff;
     font-weight: 700;
   }
@@ -482,12 +553,6 @@
     <div class="collection-layout">
 
       {%- comment -%} ── SIDEBAR FILTRES ── {%- endcomment -%}
-
-      <button class="mobile-filter-toggle" id="mobile-filter-toggle" aria-expanded="false" aria-controls="collection-sidebar">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 4h18v2H3V4zm3 7h12v2H6v-2zm4 7h4v2h-4v-2z"/></svg>
-        <span id="mobile-filter-label">Filtres</span>
-      </button>
-
       <aside class="collection-sidebar" id="collection-sidebar">
 
         <div class="sidebar-header">
@@ -592,19 +657,21 @@
       {%- comment -%} ── CONTENU PRINCIPAL ── {%- endcomment -%}
       <div class="collection-content">
 
-        {%- comment -%} Barre résultats + tri {%- endcomment -%}
+        {%- comment -%} Toolbar : Filtres (gauche) + Tri (droite) {%- endcomment -%}
         <div class="collection-toolbar">
-          <p class="collection-toolbar__count">
-            <strong>{{ paginate.items }}</strong> produits
-          </p>
+          <button class="coll-filter-btn" id="mobile-filter-toggle" aria-expanded="false" aria-controls="collection-sidebar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 4h18v2H3V4zm3 7h12v2H6v-2zm4 7h4v2h-4v-2z"/></svg>
+            Filtres
+            <span class="coll-filter-btn__chevron">▾</span>
+          </button>
           <div class="collection-toolbar__sort">
-            <label for="collection-sort">Trier :</label>
+            <label for="collection-sort">Trier</label>
             <select id="collection-sort" class="sort-select" onchange="window.location = this.value;">
               {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
               {%- for option in collection.sort_options -%}
                 <option value="{{ collection.url }}?sort_by={{ option.value }}"
                   {% if option.value == sort_by %}selected{% endif %}>
-                  {{ option.name }} ↕
+                  {{ option.name }}
                 </option>
               {%- endfor -%}
             </select>
@@ -795,13 +862,11 @@
   (function () {
     var toggleBtn = document.getElementById('mobile-filter-toggle');
     var sidebar   = document.getElementById('collection-sidebar');
-    var label     = document.getElementById('mobile-filter-label');
     if (!toggleBtn || !sidebar) return;
 
     toggleBtn.addEventListener('click', function () {
       var isOpen = sidebar.classList.toggle('is-open');
       toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      label.textContent = isOpen ? 'Fermer les filtres' : 'Filtres';
     });
   })();
 </script>
@@ -827,7 +892,7 @@
       "max": 500,
       "step": 10,
       "unit": "€",
-      "default": 50,
+      "default": 200,
       "label": "Prix maximum du curseur"
     },
     {

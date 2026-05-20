@@ -5,6 +5,7 @@
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     background-color: #fdfdfd;
+    font-family: 'Figtree', sans-serif;
   }
 
   @media screen and (min-width: 750px) {
@@ -19,13 +20,13 @@
     margin-bottom: 2.5rem;
   }
   .contact-header__title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 800;
     color: #2a2a2a;
     margin: 0 0 0.5rem 0;
   }
   .contact-header__subtitle {
-    font-size: 0.95rem;
+    font-size: 1.35rem;
     color: #666;
     margin: 0;
   }
@@ -74,7 +75,7 @@
   }
 
   .contact-form__field label {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #2a2a2a;
     text-transform: uppercase;
@@ -82,7 +83,7 @@
   }
 
   .contact-form__field label .required {
-    color: #74B734;
+    color: #36881f;
     margin-left: 2px;
   }
 
@@ -91,8 +92,8 @@
   .contact-form__field textarea {
     border: 1.5px solid #ddd;
     border-radius: 6px;
-    padding: 0.65rem 0.9rem;
-    font-size: 0.9rem;
+    padding: 0.8rem 0.9rem;
+    font-size: 1.25rem;
     color: #2a2a2a;
     background: #fff;
     outline: none;
@@ -105,7 +106,7 @@
   .contact-form__field input:focus,
   .contact-form__field select:focus,
   .contact-form__field textarea:focus {
-    border-color: #74B734;
+    border-color: #36881f;
   }
 
   .contact-form__field select {
@@ -121,12 +122,12 @@
 
   .contact-form__submit {
     width: 100%;
-    background-color: #74B734;
+    background-color: #36881f;
     color: #ffffff;
     border: none;
     border-radius: 6px;
-    padding: 0.85rem;
-    font-size: 0.95rem;
+    padding: 0.9rem;
+    font-size: 1.3rem;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -142,7 +143,7 @@
     align-items: center;
     gap: 0.75rem;
     background: #f2f9ea;
-    border: 1px solid #74B734;
+    border: 1px solid #36881f;
     border-radius: 8px;
     padding: 1rem 1.2rem;
     font-size: 0.9rem;
@@ -176,7 +177,7 @@
   }
 
   .contact-info__block-title {
-    font-size: 0.75rem;
+    font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -188,36 +189,45 @@
   .contact-info__response {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0.9rem;
   }
   .contact-info__response-icon {
-    font-size: 1.3rem;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
     flex-shrink: 0;
   }
   .contact-info__response p {
     margin: 0;
-    font-size: 0.88rem;
+    font-size: 1.2rem;
     color: #444;
-    line-height: 1.5;
+    line-height: 1.6;
   }
   .contact-info__response strong {
     color: #2a2a2a;
     display: block;
     margin-bottom: 0.2rem;
+    font-size: 1.25rem;
   }
 
   /* Email */
   .contact-info__email-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
+    gap: 0.6rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: #74B734;
+    color: #36881f;
     text-decoration: none;
   }
   .contact-info__email-link:hover {
     text-decoration: underline;
+  }
+  .contact-info__email-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 
   /* Séparateur */
@@ -231,18 +241,67 @@
   .contact-reassurance {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
   }
   .contact-reassurance__item {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 0.85rem;
+    gap: 0.8rem;
+    font-size: 1.2rem;
     color: #555;
   }
-  .contact-reassurance__item span:first-child {
-    font-size: 1rem;
+  .contact-reassurance__icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
     flex-shrink: 0;
+  }
+
+  /* ── CTA Banner ── */
+  .contact-cta {
+    padding: 4rem 2rem;
+  }
+  .contact-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 860px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .contact-cta__text {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.45;
+    font-family: 'Figtree', sans-serif;
+  }
+  .contact-cta__btn {
+    display: inline-block;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 1rem 2.2rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Figtree', sans-serif;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .contact-cta__btn:hover {
+    background: #ffffff;
+    color: #555;
+  }
+  @media screen and (max-width: 749px) {
+    .contact-cta__inner {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
   }
 
   @media screen and (max-width: 989px) {
@@ -253,7 +312,7 @@
 
   /* ── Fil d'Ariane ── */
   .contact-breadcrumb {
-    font-size: 0.8rem;
+    font-size: 1.15rem;
     color: #999;
     margin-bottom: 1.2rem;
   }
@@ -262,7 +321,7 @@
     text-decoration: none;
   }
   .contact-breadcrumb a:hover {
-    color: #74B734;
+    color: #36881f;
     text-decoration: underline;
   }
   .contact-breadcrumb span[aria-hidden] {
@@ -374,7 +433,13 @@
           <div>
             <p class="contact-info__block-title">Support client</p>
             <div class="contact-info__response">
-              <span class="contact-info__response-icon">💬</span>
+              {%- if section.settings.support_icon != blank -%}
+                {{ section.settings.support_icon | image_url: width: 72 | image_tag:
+                  class: 'contact-info__response-icon',
+                  alt: '',
+                  loading: 'lazy'
+                }}
+              {%- endif -%}
               <p>
                 <strong>Réponse sous {{ section.settings.response_delay }}</strong>
                 {{ section.settings.response_hours }}
@@ -389,7 +454,14 @@
             <div>
               <p class="contact-info__block-title">Email</p>
               <a href="mailto:{{ section.settings.contact_email }}" class="contact-info__email-link">
-                ✉️ {{ section.settings.contact_email }}
+                {%- if section.settings.email_icon != blank -%}
+                  {{ section.settings.email_icon | image_url: width: 56 | image_tag:
+                    class: 'contact-info__email-icon',
+                    alt: '',
+                    loading: 'lazy'
+                  }}
+                {%- endif -%}
+                {{ section.settings.contact_email }}
               </a>
             </div>
             <hr class="contact-info__sep">
@@ -400,13 +472,22 @@
             <p class="contact-info__block-title">Nos engagements</p>
             <div class="contact-reassurance">
               <div class="contact-reassurance__item">
-                <span>🔒</span><span>Paiement 100% sécurisé</span>
+                {%- if section.settings.icon_secure != blank -%}
+                  {{ section.settings.icon_secure | image_url: width: 60 | image_tag: class: 'contact-reassurance__icon', alt: '', loading: 'lazy' }}
+                {%- endif -%}
+                <span>{{ section.settings.label_secure }}</span>
               </div>
               <div class="contact-reassurance__item">
-                <span>🚚</span><span>Livraison rapide 5-10 jours</span>
+                {%- if section.settings.icon_delivery != blank -%}
+                  {{ section.settings.icon_delivery | image_url: width: 60 | image_tag: class: 'contact-reassurance__icon', alt: '', loading: 'lazy' }}
+                {%- endif -%}
+                <span>{{ section.settings.label_delivery }}</span>
               </div>
               <div class="contact-reassurance__item">
-                <span>🔄</span><span>Retours acceptés sous 30 jours</span>
+                {%- if section.settings.icon_return != blank -%}
+                  {{ section.settings.icon_return | image_url: width: 60 | image_tag: class: 'contact-reassurance__icon', alt: '', loading: 'lazy' }}
+                {%- endif -%}
+                <span>{{ section.settings.label_return }}</span>
               </div>
             </div>
           </div>
@@ -417,6 +498,19 @@
     </div>
   </div>
 </div>
+
+{%- if section.settings.cta_text != blank or section.settings.cta_label != blank -%}
+  <div class="contact-cta" style="background-color: {{ section.settings.cta_bg_color }};">
+    <div class="contact-cta__inner">
+      {%- if section.settings.cta_text != blank -%}
+        <p class="contact-cta__text">{{ section.settings.cta_text | newline_to_br }}</p>
+      {%- endif -%}
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="contact-cta__btn">{{ section.settings.cta_label }} →</a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -445,7 +539,16 @@
     },
     {
       "type": "header",
-      "content": "Infos de contact"
+      "content": "Support client"
+    },
+    {
+      "type": "image_picker",
+      "id": "support_icon",
+      "label": "Icône support (PNG)"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 72 × 72 px (carré, PNG transparent)"
     },
     {
       "type": "text",
@@ -460,9 +563,90 @@
       "default": "Du lundi au vendredi, 9h–18h."
     },
     {
+      "type": "header",
+      "content": "Email"
+    },
+    {
+      "type": "image_picker",
+      "id": "email_icon",
+      "label": "Icône email (PNG)"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 56 × 56 px (carré, PNG transparent)"
+    },
+    {
       "type": "text",
       "id": "contact_email",
       "label": "Email de contact (laisser vide pour masquer)"
+    },
+    {
+      "type": "header",
+      "content": "Nos engagements"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_secure",
+      "label": "Icône paiement sécurisé (PNG)"
+    },
+    {
+      "type": "text",
+      "id": "label_secure",
+      "label": "Texte paiement sécurisé",
+      "default": "Paiement 100% sécurisé"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_delivery",
+      "label": "Icône livraison (PNG)"
+    },
+    {
+      "type": "text",
+      "id": "label_delivery",
+      "label": "Texte livraison",
+      "default": "Livraison rapide 5-10 jours"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_return",
+      "label": "Icône retours (PNG)"
+    },
+    {
+      "type": "text",
+      "id": "label_return",
+      "label": "Texte retours",
+      "default": "Retours acceptés sous 30 jours"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Icônes engagements recommandées : 60 × 60 px (carré, PNG transparent)"
+    },
+    {
+      "type": "header",
+      "content": "Bannière CTA"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Couleur de fond",
+      "default": "#b5975a"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "Texte",
+      "default": "Vous avez encore des questions ?\nN'hésitez pas à nous contacter."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texte bouton",
+      "default": "CONTACTEZ-NOUS"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL bouton"
     },
     {
       "type": "header",

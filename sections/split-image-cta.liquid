@@ -1,0 +1,269 @@
+{%- style -%}
+  .page-split-cta-{{ section.id }} {
+    font-family: 'Figtree', sans-serif;
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.outer_padding }}px;
+  }
+
+  .page-split-cta-{{ section.id }} .split-cta__wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ section.settings.separator_size }}px;
+    height: {{ section.settings.height }}px;
+    overflow: hidden;
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+
+  .page-split-cta-{{ section.id }} .split-cta__img-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .page-split-cta-{{ section.id }} .split-cta__img,
+  .page-split-cta-{{ section.id }} .split-cta__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #d0cbc2;
+  }
+
+  /* Carte centrale */
+  .page-split-cta-{{ section.id }} .split-cta__card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 2.8rem 3rem;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.13);
+    width: 90%;
+    max-width: 420px;
+    z-index: 2;
+  }
+
+  .page-split-cta-{{ section.id }} .split-cta__title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: #2a1f14;
+    margin: 0 0 1.1rem;
+    line-height: 1.2;
+  }
+
+  .page-split-cta-{{ section.id }} .split-cta__desc {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.7;
+    margin: 0 0 1.8rem;
+  }
+
+  .page-split-cta-{{ section.id }} .split-cta__btn {
+    display: inline-block;
+    background-color: {{ section.settings.btn_color }};
+    color: #ffffff;
+    padding: 1rem 2.4rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: inherit;
+    transition: opacity 0.2s;
+    border-radius: 3px;
+  }
+  .page-split-cta-{{ section.id }} .split-cta__btn:hover {
+    opacity: 0.85;
+  }
+
+  @media screen and (max-width: 749px) {
+    .page-split-cta-{{ section.id }} {
+      padding: {{ section.settings.outer_padding | divided_by: 2 }}px;
+    }
+    .page-split-cta-{{ section.id }} .split-cta__wrapper {
+      height: {{ section.settings.height | times: 0.75 | round }}px;
+    }
+    .page-split-cta-{{ section.id }} .split-cta__card {
+      padding: 2rem 1.8rem;
+      max-width: 85%;
+    }
+    .page-split-cta-{{ section.id }} .split-cta__title {
+      font-size: 1.6rem;
+    }
+    .page-split-cta-{{ section.id }} .split-cta__desc {
+      font-size: 1.05rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-split-cta-{{ section.id }}">
+  <div class="split-cta__wrapper">
+
+    {%- comment -%} Image gauche {%- endcomment -%}
+    <div class="split-cta__img-wrap">
+      {%- if section.settings.image_left != blank -%}
+        {%- assign left_alt = section.settings.title | escape -%}
+        {{ section.settings.image_left | image_url: width: 1000 | image_tag:
+          class: 'split-cta__img',
+          alt: left_alt,
+          loading: 'lazy',
+          widths: '500, 750, 1000'
+        }}
+      {%- else -%}
+        <div class="split-cta__placeholder"></div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Image droite {%- endcomment -%}
+    <div class="split-cta__img-wrap">
+      {%- if section.settings.image_right != blank -%}
+        {%- assign right_alt = section.settings.title | escape -%}
+        {{ section.settings.image_right | image_url: width: 1000 | image_tag:
+          class: 'split-cta__img',
+          alt: right_alt,
+          loading: 'lazy',
+          widths: '500, 750, 1000'
+        }}
+      {%- else -%}
+        <div class="split-cta__placeholder"></div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Carte centrale {%- endcomment -%}
+    <div class="split-cta__card">
+      {%- if section.settings.title != blank -%}
+        <h2 class="split-cta__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="split-cta__desc">{{ section.settings.description }}</p>
+      {%- endif -%}
+      {%- if section.settings.btn_label != blank -%}
+        <a href="{{ section.settings.btn_url }}" class="split-cta__btn">{{ section.settings.btn_label }}</a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Split image + CTA",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "🖼 Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Image gauche"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 900 × 700 px (portrait, JPG)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Image droite"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 900 × 700 px (portrait, JPG)"
+    },
+    {
+      "type": "header",
+      "content": "📝 Carte centrale"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Envie d'en savoir plus ?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Découvrez l'univers de LD Global CO. et notre sélection d'accessoires pensés pour simplifier votre quotidien en cuisine."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Texte bouton",
+      "default": "NOTRE BOUTIQUE"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "URL bouton"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Couleur bouton",
+      "default": "#3d2b1f"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Couleur de fond (bordure)",
+      "default": "#f0ebe0"
+    },
+    {
+      "type": "range",
+      "id": "outer_padding",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Épaisseur de la bordure",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "separator_size",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Épaisseur du séparateur",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 300,
+      "max": 700,
+      "step": 20,
+      "unit": "px",
+      "label": "Hauteur de la section",
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Arrondi des coins",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split image + CTA"
+    }
+  ]
+}
+{% endschema %}

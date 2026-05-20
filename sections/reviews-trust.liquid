@@ -1,0 +1,624 @@
+{%- style -%}
+  .reviews-trust-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    font-family: 'Figtree', sans-serif;
+  }
+
+  @media screen and (max-width: 749px) {
+    .reviews-trust-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+  }
+
+  /* ── En-tête ── */
+  .reviews-trust__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .reviews-trust__title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+  }
+  .reviews-trust__subtitle {
+    font-size: 1.3rem;
+    color: #888;
+    margin: 0;
+  }
+
+  /* ── Stats ── */
+  .reviews-trust__stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .reviews-trust__stat-label-top {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 0.2rem;
+  }
+  .reviews-trust__stat-number {
+    display: block;
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .reviews-trust__stat-label-bottom {
+    display: block;
+    font-size: 1.25rem;
+    color: #444;
+    font-weight: 500;
+  }
+
+  /* ── Carousel wrapper ── */
+  .reviews-trust__carousel {
+    position: relative;
+  }
+
+  /* ── Track scrollable ── */
+  .reviews-trust__track {
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+  }
+  .reviews-trust__track::-webkit-scrollbar { display: none; }
+
+  /* ── Carte avis ── */
+  .reviews-trust__card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.8rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    scroll-snap-align: start;
+    flex: 0 0 calc(33.333% - 0.8rem);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width: 749px) {
+    .reviews-trust__card {
+      flex: 0 0 calc(100% - 1.2rem);
+    }
+  }
+
+  /* ── Carousel 70% sur desktop ── */
+  @media screen and (min-width: 750px) {
+    .reviews-trust__carousel {
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
+
+  /* Étoiles */
+  .reviews-trust__stars {
+    display: flex;
+    gap: 0.15rem;
+  }
+  .reviews-trust__star {
+    color: #36881f;
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  .reviews-trust__star--empty {
+    color: #ddd;
+  }
+
+  /* Titre de l'avis */
+  .reviews-trust__review-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #36881f;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* Corps de l'avis */
+  .reviews-trust__review-body {
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  /* Séparateur */
+  .reviews-trust__card-sep {
+    border: none;
+    border-top: 1px solid #eeeeee;
+    margin: 0;
+  }
+
+  /* Auteur */
+  .reviews-trust__author {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .reviews-trust__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    background-color: #e8e8e8;
+  }
+  .reviews-trust__avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #aaa;
+  }
+  .reviews-trust__author-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.15rem 0;
+  }
+  .reviews-trust__author-location {
+    font-size: 1rem;
+    color: #999;
+    margin: 0;
+  }
+
+  /* ── Dots navigation ── */
+  .reviews-trust__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.6rem;
+  }
+  .reviews-trust__dot {
+    width: 28px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: #ddd;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.25s, width 0.25s;
+  }
+  .reviews-trust__dot.is-active {
+    background-color: #36881f;
+    width: 44px;
+  }
+
+  /* ── Flèches prev/next ── */
+  .reviews-trust__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+  .reviews-trust__arrow:hover {
+    background-color: #36881f;
+    border-color: #36881f;
+    color: #ffffff;
+  }
+  .reviews-trust__arrow svg { pointer-events: none; }
+  .reviews-trust__arrow--prev { left: -20px; }
+  .reviews-trust__arrow--next { right: -20px; }
+
+  @media screen and (max-width: 749px) {
+    .reviews-trust__arrow { display: none; }
+  }
+{%- endstyle -%}
+
+<div class="reviews-trust-{{ section.id }}">
+  <div class="page-width">
+
+    {%- comment -%} ── En-tête ── {%- endcomment -%}
+    <div class="reviews-trust__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="reviews-trust__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="reviews-trust__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ── Stats ── {%- endcomment -%}
+    {%- assign stat_blocks = section.blocks | where: 'type', 'stat' -%}
+    {%- if stat_blocks.size > 0 -%}
+      <div class="reviews-trust__stats">
+        {%- for block in stat_blocks -%}
+          <div class="reviews-trust__stat" {{ block.shopify_attributes }}>
+            {%- if block.settings.label_top != blank -%}
+              <span class="reviews-trust__stat-label-top">{{ block.settings.label_top }}</span>
+            {%- endif -%}
+            <span class="reviews-trust__stat-number" style="color: {{ block.settings.number_color }};">
+              {{ block.settings.number }}
+            </span>
+            {%- if block.settings.label_bottom != blank -%}
+              <span class="reviews-trust__stat-label-bottom">{{ block.settings.label_bottom }}</span>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} ── Carousel avis ── {%- endcomment -%}
+    {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+    {%- if review_blocks.size > 0 -%}
+      <div class="reviews-trust__carousel">
+
+        <button class="reviews-trust__arrow reviews-trust__arrow--prev" aria-label="Précédent" data-carousel="{{ section.id }}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+
+        <div class="reviews-trust__track" id="reviews-track-{{ section.id }}">
+          {%- for block in review_blocks -%}
+            <div class="reviews-trust__card" {{ block.shopify_attributes }}>
+
+              {%- comment -%} Étoiles {%- endcomment -%}
+              <div class="reviews-trust__stars" aria-label="{{ block.settings.stars }} étoiles sur 5">
+                {%- for i in (1..5) -%}
+                  {%- if i <= block.settings.stars -%}
+                    <span class="reviews-trust__star">★</span>
+                  {%- else -%}
+                    <span class="reviews-trust__star reviews-trust__star--empty">★</span>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              {%- if block.settings.review_title != blank -%}
+                <p class="reviews-trust__review-title">{{ block.settings.review_title }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.review_body != blank -%}
+                <p class="reviews-trust__review-body">{{ block.settings.review_body }}</p>
+              {%- endif -%}
+
+              <hr class="reviews-trust__card-sep">
+
+              <div class="reviews-trust__author">
+                {%- if block.settings.avatar != blank -%}
+                  {%- assign avatar_alt = block.settings.author_name | escape -%}
+                  {{ block.settings.avatar | image_url: width: 96 | image_tag:
+                    class: 'reviews-trust__avatar',
+                    alt: avatar_alt,
+                    loading: 'lazy'
+                  }}
+                {%- else -%}
+                  <div class="reviews-trust__avatar-placeholder">👤</div>
+                {%- endif -%}
+                <div>
+                  <p class="reviews-trust__author-name">{{ block.settings.author_name }}</p>
+                  {%- if block.settings.author_location != blank -%}
+                    <p class="reviews-trust__author-location">{{ block.settings.author_location }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <button class="reviews-trust__arrow reviews-trust__arrow--next" aria-label="Suivant" data-carousel="{{ section.id }}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+
+      </div>
+
+      {%- comment -%} Dots ── {%- endcomment -%}
+      <div class="reviews-trust__dots" id="reviews-dots-{{ section.id }}" role="tablist" aria-label="Navigation avis">
+        {%- for block in review_blocks -%}
+          <button class="reviews-trust__dot{% if forloop.first %} is-active{% endif %}"
+            data-index="{{ forloop.index0 }}"
+            data-carousel="{{ section.id }}"
+            aria-label="Avis {{ forloop.index }}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  var track = document.getElementById('reviews-track-' + sectionId);
+  var dots = document.querySelectorAll('.reviews-trust__dot[data-carousel="' + sectionId + '"]');
+  var arrows = document.querySelectorAll('.reviews-trust__arrow[data-carousel="' + sectionId + '"]');
+
+  if (!track) return;
+
+  function getCardWidth() {
+    var card = track.querySelector('.reviews-trust__card');
+    if (!card) return track.offsetWidth;
+    return card.offsetWidth + 19; /* card width + gap */
+  }
+
+  function getVisibleCount() {
+    var cardWidth = getCardWidth();
+    if (cardWidth === 0) return 1;
+    return Math.max(1, Math.round(track.offsetWidth / cardWidth));
+  }
+
+  function getTotalPages() {
+    return Math.max(1, dots.length - getVisibleCount() + 1);
+  }
+
+  function refreshDotVisibility() {
+    var pages = getTotalPages();
+    dots.forEach(function(dot, i) {
+      dot.style.display = i < pages ? '' : 'none';
+    });
+  }
+
+  function updateDots() {
+    var cardWidth = getCardWidth();
+    if (cardWidth === 0) return;
+    var index = Math.round(track.scrollLeft / cardWidth);
+    var pages = getTotalPages();
+    index = Math.min(index, pages - 1);
+    dots.forEach(function(dot, i) {
+      var active = i === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  }
+
+  refreshDotVisibility();
+  track.addEventListener('scroll', updateDots, { passive: true });
+  window.addEventListener('resize', function() {
+    refreshDotVisibility();
+    updateDots();
+  });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(dot.getAttribute('data-index'));
+      track.scrollTo({ left: idx * getCardWidth(), behavior: 'smooth' });
+    });
+  });
+
+  arrows.forEach(function(arrow) {
+    arrow.addEventListener('click', function() {
+      var isPrev = arrow.classList.contains('reviews-trust__arrow--prev');
+      var cardWidth = getCardWidth();
+      track.scrollBy({ left: isPrev ? -cardWidth : cardWidth, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Avis & confiance",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Pourquoi nous choisir ?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Vous êtes entre de bonnes mains."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Couleur de fond",
+      "default": "#fdf8f4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement haut",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement bas",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistique",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label_top",
+          "label": "Étiquette au-dessus",
+          "default": "PLUS DE"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Chiffre",
+          "default": "142k"
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Couleur du chiffre",
+          "default": "#f97316"
+        },
+        {
+          "type": "text",
+          "id": "label_bottom",
+          "label": "Étiquette en-dessous",
+          "default": "produits vendus"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Avis client",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "range",
+          "id": "stars",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Note (étoiles)",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Titre de l'avis",
+          "default": "Super produit !"
+        },
+        {
+          "type": "textarea",
+          "id": "review_body",
+          "label": "Texte de l'avis",
+          "default": "Très satisfait de mon achat. La qualité est au rendez-vous et la livraison a été rapide."
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Photo de profil"
+        },
+        {
+          "type": "paragraph",
+          "content": "📐 Recommandé : 200 × 200 px (carré, JPG ou PNG)"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Nom",
+          "default": "Jean Dupont"
+        },
+        {
+          "type": "text",
+          "id": "author_location",
+          "label": "Ville, Pays",
+          "default": "Paris, France"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avis & confiance",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "label_top": "PLUS DE",
+            "number": "142k",
+            "number_color": "#f97316",
+            "label_bottom": "produits vendus"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "label_top": "AVEC",
+            "number": "95%",
+            "number_color": "#a855f7",
+            "label_bottom": "d'avis positifs"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Produits très pratiques",
+            "review_body": "J'ai commandé plusieurs accessoires de cuisine et la qualité est au rendez-vous. Mon éplucheur est super efficace et la livraison a été rapide.",
+            "author_name": "Léa Martin",
+            "author_location": "Paris, France"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Service au top",
+            "review_body": "Commande simple, suivi clair et produits conformes aux photos. Le minuteur et le découpe-légumes me font gagner un vrai temps au quotidien.",
+            "author_name": "Lucas Bernard",
+            "author_location": "Lyon, France"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Je recommande !",
+            "review_body": "Très bonne expérience d'achat. Les produits sont de qualité et le service client est réactif. Je reviendrai sûrement.",
+            "author_name": "Marie Leroy",
+            "author_location": "Bordeaux, France"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_title": "Excellent rapport qualité/prix",
+            "review_body": "Le spiraliseur est parfait pour mes recettes healthy. Facile à utiliser et à nettoyer. Vraiment top !",
+            "author_name": "Thomas Petit",
+            "author_location": "Marseille, France"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,892 @@
+{%- style -%}
+  .page-about-{{ section.id }} {
+    font-family: 'Figtree', sans-serif;
+    background-color: #faf7f4;
+  }
+
+  /* ══════════════════════════════
+     HERO BANNER
+  ══════════════════════════════ */
+  .about-hero {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #1a1a1a;
+  }
+  .about-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .about-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+  }
+  .about-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 2rem;
+  }
+  .about-hero__title {
+    font-size: clamp(3.8rem, 9vw, 7rem);
+    font-weight: 900;
+    color: #ffffff;
+    margin: 0 0 0.6rem;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+  .about-hero__subtitle {
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* Tablette */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .about-hero { height: 360px; }
+    .about-hero__title { font-size: clamp(3rem, 7vw, 5rem); }
+    .about-hero__subtitle { font-size: 1.4rem; }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .about-hero { height: 260px; }
+    .about-hero__title { font-size: clamp(2.4rem, 9vw, 3.6rem); }
+    .about-hero__subtitle { font-size: 1.15rem; }
+  }
+
+  /* ══════════════════════════════
+     SPLIT IMAGE + TEXTE
+  ══════════════════════════════ */
+  .about-split {
+    padding: 5rem 3rem;
+    overflow: hidden;
+  }
+  .about-split__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Image */
+  .about-split__image-wrap {
+    position: relative;
+    z-index: 1;
+  }
+  .about-split__image-wrap img,
+  .about-split__image-placeholder {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    background-color: #ddd;
+  }
+
+  /* Carte texte qui chevauche l'image */
+  .about-split__text {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.09);
+    z-index: 2;
+    position: relative;
+    margin-left: -5rem;
+  }
+
+  /* Version inversée : texte à gauche, image à droite */
+  .about-split--reverse .about-split__inner {
+    direction: rtl;
+  }
+  .about-split--reverse .about-split__text,
+  .about-split--reverse .about-split__image-wrap {
+    direction: ltr;
+  }
+  .about-split--reverse .about-split__text {
+    margin-left: 0;
+    margin-right: -5rem;
+  }
+
+  .about-split__title {
+    font-size: clamp(2.4rem, 3.5vw, 3.6rem);
+    font-weight: 900;
+    color: #1a1a1a;
+    margin: 0 0 1.5rem;
+    line-height: 1.15;
+  }
+  .about-split__body {
+    font-size: 1.3rem;
+    color: #444;
+    line-height: 1.8;
+    margin: 0 0 1.2rem;
+  }
+  .about-split__body:last-of-type { margin-bottom: 0; }
+
+  /* Miniatures rondes optionnelles */
+  .about-split__thumbs {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.8rem;
+  }
+  .about-split__thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #eee;
+  }
+
+  /* Stat inline (section efficacité) */
+  .about-split__stat {
+    margin-top: 1.8rem;
+  }
+  .about-split__stat-number {
+    font-size: 5.5rem;
+    font-weight: 900;
+    line-height: 1;
+    display: block;
+  }
+  .about-split__stat-label {
+    font-size: 1.35rem;
+    color: #555;
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  /* Tablette */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .about-split { padding: 3.5rem 2rem; }
+    .about-split__inner {
+      grid-template-columns: 1fr;
+      direction: ltr !important;
+    }
+    .about-split__image-wrap img,
+    .about-split__image-placeholder { height: 360px; }
+    .about-split__text {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      margin-top: -2.5rem;
+      padding: 2.5rem;
+    }
+    .about-split__title { font-size: clamp(2rem, 4vw, 2.8rem); }
+    .about-split__body { font-size: 1.2rem; }
+    .about-split__stat-number { font-size: 4rem; }
+    .about-split--reverse .about-split__inner { direction: ltr; }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .about-split { padding: 2.5rem 1.2rem; }
+    .about-split__inner {
+      grid-template-columns: 1fr;
+      direction: ltr !important;
+    }
+    .about-split__image-wrap img,
+    .about-split__image-placeholder { height: 240px; }
+    .about-split__text {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      margin-top: -2rem;
+      padding: 1.5rem;
+    }
+    .about-split__title { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+    .about-split__body { font-size: 1.05rem; line-height: 1.7; }
+    .about-split__stat-number { font-size: 3rem; }
+    .about-split__stat-label { font-size: 1.1rem; }
+    .about-split--reverse .about-split__inner { direction: ltr; }
+  }
+
+  /* ══════════════════════════════
+     STATS SOMBRE
+  ══════════════════════════════ */
+  .about-stats-dark {
+    background-color: {{ section.settings.stats_bg_color }};
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .about-stats-dark__title {
+    font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 3rem;
+  }
+  .about-stats-dark__grid {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    flex-wrap: wrap;
+  }
+  .about-stats-dark__label-top {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.3rem;
+  }
+  .about-stats-dark__number {
+    display: block;
+    font-size: clamp(4.5rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .about-stats-dark__label-bottom {
+    display: block;
+    font-size: 1.5rem;
+    color: #cccccc;
+  }
+
+  /* Tablette */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .about-stats-dark { padding: 4rem 2rem; }
+    .about-stats-dark__title { font-size: clamp(2rem, 4vw, 2.8rem); }
+    .about-stats-dark__grid { gap: 4rem; }
+    .about-stats-dark__number { font-size: clamp(3.5rem, 7vw, 5.5rem); }
+    .about-stats-dark__label-bottom { font-size: 1.3rem; }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .about-stats-dark { padding: 3rem 1.5rem; }
+    .about-stats-dark__title { font-size: clamp(1.8rem, 6vw, 2.4rem); margin-bottom: 2rem; }
+    .about-stats-dark__grid { gap: 2.5rem; flex-direction: column; align-items: center; }
+    .about-stats-dark__number { font-size: clamp(3rem, 10vw, 4.5rem); }
+    .about-stats-dark__label-top { font-size: 1rem; }
+    .about-stats-dark__label-bottom { font-size: 1.15rem; }
+  }
+
+  /* ══════════════════════════════
+     AVIS CLIENTS
+  ══════════════════════════════ */
+  .about-reviews {
+    padding: 5rem 2rem;
+    background-color: #faf7f4;
+  }
+  .about-reviews__title {
+    font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 0 0 3rem;
+  }
+  .about-reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .about-review-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .about-review__stars {
+    color: #276427;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .about-review__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #276427;
+    margin: 0;
+  }
+  .about-review__body {
+    font-size: 1.25rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
+  }
+  .about-review__sep {
+    border: none;
+    border-top: 1px solid #eeeeee;
+    margin: 0;
+  }
+  .about-review__author {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .about-review__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .about-review__avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .about-review__name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.1rem;
+  }
+  .about-review__location {
+    font-size: 1.15rem;
+    color: #999;
+    margin: 0;
+  }
+
+  /* Tablette */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .about-reviews { padding: 4rem 1.5rem; }
+    .about-reviews__title { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 2rem; }
+    .about-reviews__grid { gap: 1.2rem; }
+    .about-review-card { padding: 1.6rem; }
+    .about-review__title { font-size: 1.3rem; }
+    .about-review__body { font-size: 1.1rem; }
+    .about-review__name { font-size: 1.2rem; }
+    .about-review__location { font-size: 1rem; }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .about-reviews { padding: 2.5rem 1.2rem; }
+    .about-reviews__title { font-size: clamp(1.8rem, 6vw, 2.4rem); margin-bottom: 1.8rem; }
+    .about-reviews__grid { grid-template-columns: 1fr; gap: 1rem; }
+    .about-review-card { padding: 1.25rem; gap: 0.7rem; }
+    .about-review__stars { font-size: 1.5rem; }
+    .about-review__title { font-size: 1.2rem; }
+    .about-review__body { font-size: 1.05rem; }
+    .about-review__name { font-size: 1.15rem; }
+    .about-review__location { font-size: 1rem; }
+    .about-review__avatar,
+    .about-review__avatar-placeholder { width: 40px; height: 40px; }
+  }
+{%- endstyle -%}
+
+{%- comment -%} ══ 1. HERO ══ {%- endcomment -%}
+<div class="page-about-{{ section.id }}">
+
+  <div class="about-hero">
+    {%- if section.settings.hero_image != blank -%}
+      {%- assign hero_alt = section.settings.hero_title | escape -%}
+      {{ section.settings.hero_image | image_url: width: 1800 | image_tag:
+        class: 'about-hero__bg',
+        alt: hero_alt,
+        loading: 'eager',
+        widths: '750, 1100, 1500, 1800'
+      }}
+    {%- endif -%}
+    <div class="about-hero__overlay"></div>
+    <div class="about-hero__content">
+      <h1 class="about-hero__title">{{ section.settings.hero_title }}</h1>
+      {%- if section.settings.hero_subtitle != blank -%}
+        <p class="about-hero__subtitle">{{ section.settings.hero_subtitle }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%} ══ 2. INTRO — image gauche, texte droite ══ {%- endcomment -%}
+  <div class="about-split">
+    <div class="about-split__inner">
+      <div class="about-split__image-wrap">
+        {%- if section.settings.intro_image != blank -%}
+          {%- assign intro_alt = section.settings.intro_title | escape -%}
+          {{ section.settings.intro_image | image_url: width: 900 | image_tag:
+            loading: 'lazy',
+            alt: intro_alt,
+            widths: '500, 700, 900'
+          }}
+        {%- else -%}
+          <div class="about-split__image-placeholder"></div>
+        {%- endif -%}
+      </div>
+      <div class="about-split__text">
+        <h2 class="about-split__title">{{ section.settings.intro_title }}</h2>
+        {%- if section.settings.intro_text1 != blank -%}
+          <p class="about-split__body">{{ section.settings.intro_text1 }}</p>
+        {%- endif -%}
+        {%- if section.settings.intro_text2 != blank -%}
+          <p class="about-split__body">{{ section.settings.intro_text2 }}</p>
+        {%- endif -%}
+        {%- if section.settings.intro_thumb1 != blank or section.settings.intro_thumb2 != blank -%}
+          <div class="about-split__thumbs">
+            {%- if section.settings.intro_thumb1 != blank -%}
+              {{ section.settings.intro_thumb1 | image_url: width: 120 | image_tag:
+                class: 'about-split__thumb', loading: 'lazy', alt: ''
+              }}
+            {%- endif -%}
+            {%- if section.settings.intro_thumb2 != blank -%}
+              {{ section.settings.intro_thumb2 | image_url: width: 120 | image_tag:
+                class: 'about-split__thumb', loading: 'lazy', alt: ''
+              }}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ══ 3. PRIX — texte gauche, image droite ══ {%- endcomment -%}
+  <div class="about-split about-split--reverse">
+    <div class="about-split__inner">
+      <div class="about-split__image-wrap">
+        {%- if section.settings.prix_image != blank -%}
+          {%- assign prix_alt = section.settings.prix_title | escape -%}
+          {{ section.settings.prix_image | image_url: width: 900 | image_tag:
+            loading: 'lazy',
+            alt: prix_alt,
+            widths: '500, 700, 900'
+          }}
+        {%- else -%}
+          <div class="about-split__image-placeholder"></div>
+        {%- endif -%}
+      </div>
+      <div class="about-split__text">
+        <h2 class="about-split__title">{{ section.settings.prix_title }}</h2>
+        {%- if section.settings.prix_text1 != blank -%}
+          <p class="about-split__body">{{ section.settings.prix_text1 }}</p>
+        {%- endif -%}
+        {%- if section.settings.prix_text2 != blank -%}
+          <p class="about-split__body">{{ section.settings.prix_text2 }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ══ 4. EFFICACITÉ — image gauche, texte droite ══ {%- endcomment -%}
+  <div class="about-split">
+    <div class="about-split__inner">
+      <div class="about-split__image-wrap">
+        {%- if section.settings.efficacite_image != blank -%}
+          {%- assign eff_alt = section.settings.efficacite_title | escape -%}
+          {{ section.settings.efficacite_image | image_url: width: 900 | image_tag:
+            loading: 'lazy',
+            alt: eff_alt,
+            widths: '500, 700, 900'
+          }}
+        {%- else -%}
+          <div class="about-split__image-placeholder"></div>
+        {%- endif -%}
+      </div>
+      <div class="about-split__text">
+        <h2 class="about-split__title">{{ section.settings.efficacite_title }}</h2>
+        {%- if section.settings.efficacite_text1 != blank -%}
+          <p class="about-split__body">{{ section.settings.efficacite_text1 }}</p>
+        {%- endif -%}
+        {%- if section.settings.efficacite_text2 != blank -%}
+          <p class="about-split__body">{{ section.settings.efficacite_text2 }}</p>
+        {%- endif -%}
+        {%- if section.settings.efficacite_stat_number != blank -%}
+          <div class="about-split__stat">
+            <span class="about-split__stat-number" style="color: {{ section.settings.efficacite_stat_color }};">
+              {{ section.settings.efficacite_stat_number }}
+            </span>
+            <span class="about-split__stat-label">{{ section.settings.efficacite_stat_label }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ══ 5. STATS SOMBRES ══ {%- endcomment -%}
+  <div class="about-stats-dark">
+    {%- if section.settings.stats_title != blank -%}
+      <h2 class="about-stats-dark__title">{{ section.settings.stats_title }}</h2>
+    {%- endif -%}
+    <div class="about-stats-dark__grid">
+      <div>
+        <span class="about-stats-dark__label-top">{{ section.settings.stat1_label_top }}</span>
+        <span class="about-stats-dark__number" style="color: {{ section.settings.stat1_color }};">{{ section.settings.stat1_number }}</span>
+        <span class="about-stats-dark__label-bottom">{{ section.settings.stat1_label_bottom }}</span>
+      </div>
+      <div>
+        <span class="about-stats-dark__label-top">{{ section.settings.stat2_label_top }}</span>
+        <span class="about-stats-dark__number" style="color: {{ section.settings.stat2_color }};">{{ section.settings.stat2_number }}</span>
+        <span class="about-stats-dark__label-bottom">{{ section.settings.stat2_label_bottom }}</span>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ══ 6. AVIS CLIENTS ══ {%- endcomment -%}
+  <div class="about-reviews">
+    <div class="page-width">
+      <h2 class="about-reviews__title">{{ section.settings.reviews_title }}</h2>
+      <div class="about-reviews__grid">
+
+        {%- comment -%} Avis 1 {%- endcomment -%}
+        <div class="about-review-card">
+          <div class="about-review__stars">★★★★★</div>
+          <p class="about-review__title">{{ section.settings.review1_title }}</p>
+          <p class="about-review__body">{{ section.settings.review1_body }}</p>
+          <hr class="about-review__sep">
+          <div class="about-review__author">
+            {%- if section.settings.review1_avatar != blank -%}
+              {%- assign r1_alt = section.settings.review1_name | escape -%}
+              {{ section.settings.review1_avatar | image_url: width: 96 | image_tag:
+                class: 'about-review__avatar', loading: 'lazy', alt: r1_alt
+              }}
+            {%- else -%}
+              <div class="about-review__avatar-placeholder">👤</div>
+            {%- endif -%}
+            <div>
+              <p class="about-review__name">{{ section.settings.review1_name }}</p>
+              <p class="about-review__location">{{ section.settings.review1_location }}</p>
+            </div>
+          </div>
+        </div>
+
+        {%- comment -%} Avis 2 {%- endcomment -%}
+        <div class="about-review-card">
+          <div class="about-review__stars">★★★★★</div>
+          <p class="about-review__title">{{ section.settings.review2_title }}</p>
+          <p class="about-review__body">{{ section.settings.review2_body }}</p>
+          <hr class="about-review__sep">
+          <div class="about-review__author">
+            {%- if section.settings.review2_avatar != blank -%}
+              {%- assign r2_alt = section.settings.review2_name | escape -%}
+              {{ section.settings.review2_avatar | image_url: width: 96 | image_tag:
+                class: 'about-review__avatar', loading: 'lazy', alt: r2_alt
+              }}
+            {%- else -%}
+              <div class="about-review__avatar-placeholder">👤</div>
+            {%- endif -%}
+            <div>
+              <p class="about-review__name">{{ section.settings.review2_name }}</p>
+              <p class="about-review__location">{{ section.settings.review2_location }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "À propos — LD Global",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🖼 Hero banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Image hero"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 1800 × 600 px (panoramique, JPG sombre)"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Titre hero",
+      "default": "LD Global"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Slogan",
+      "default": "Les essentiels pour simplifier votre cuisine"
+    },
+    {
+      "type": "header",
+      "content": "📖 Section intro (image gauche)"
+    },
+    {
+      "type": "image_picker",
+      "id": "intro_image",
+      "label": "Image intro"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 900 × 700 px (portrait ou carré)"
+    },
+    {
+      "type": "text",
+      "id": "intro_title",
+      "label": "Titre",
+      "default": "LD Global"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text1",
+      "label": "Paragraphe 1",
+      "default": "LD Global propose une sélection d'accessoires de cuisine pratiques pour simplifier le quotidien. Éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles sont choisis pour aider à cuisiner plus facilement, plus rapidement et avec plus de plaisir."
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text2",
+      "label": "Paragraphe 2",
+      "default": "Des produits malins, fiables et fonctionnels, pensés pour gagner du temps, alléger les tâches en cuisine et vous accompagner au quotidien, du repas le plus simple aux recettes les plus créatives."
+    },
+    {
+      "type": "image_picker",
+      "id": "intro_thumb1",
+      "label": "Miniature produit 1 (optionnel)"
+    },
+    {
+      "type": "image_picker",
+      "id": "intro_thumb2",
+      "label": "Miniature produit 2 (optionnel)"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Miniatures : 120 × 120 px (carré)"
+    },
+    {
+      "type": "header",
+      "content": "💰 Section prix accessibles (image droite)"
+    },
+    {
+      "type": "image_picker",
+      "id": "prix_image",
+      "label": "Image"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 900 × 700 px"
+    },
+    {
+      "type": "text",
+      "id": "prix_title",
+      "label": "Titre",
+      "default": "Des prix accessibles."
+    },
+    {
+      "type": "textarea",
+      "id": "prix_text1",
+      "label": "Paragraphe 1",
+      "default": "LD Global sélectionne des accessoires de cuisine pratiques à des prix pensés pour rester accessibles au quotidien. Éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles : nous misons sur des essentiels utiles, au bon rapport qualité-prix."
+    },
+    {
+      "type": "textarea",
+      "id": "prix_text2",
+      "label": "Paragraphe 2",
+      "default": "Nous privilégions une approche simple : des produits bien choisis, des tarifs justes et une offre pensée pour vous équiper sans dépenser plus que nécessaire. Pas de promesses excessives, juste des indispensables fiables pour cuisiner plus facilement et avec plus de plaisir."
+    },
+    {
+      "type": "header",
+      "content": "⚡ Section efficacité (image gauche)"
+    },
+    {
+      "type": "image_picker",
+      "id": "efficacite_image",
+      "label": "Image"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 900 × 700 px"
+    },
+    {
+      "type": "text",
+      "id": "efficacite_title",
+      "label": "Titre",
+      "default": "Une efficacité pensée pour le quotidien."
+    },
+    {
+      "type": "textarea",
+      "id": "efficacite_text1",
+      "label": "Paragraphe 1",
+      "default": "LD Global sélectionne des accessoires de cuisine pratiques pour vous aider à gagner du temps et simplifier chaque préparation. Éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles : chaque produit est choisi pour être efficace, facile à utiliser et utile au quotidien."
+    },
+    {
+      "type": "textarea",
+      "id": "efficacite_text2",
+      "label": "Paragraphe 2",
+      "default": "Notre objectif est simple : vous proposer des essentiels fiables, rapides à prendre en main et agréables à utiliser. Moins de gestes inutiles, plus de confort, et une cuisine plus fluide du repas le plus simple aux recettes les plus créatives."
+    },
+    {
+      "type": "text",
+      "id": "efficacite_stat_number",
+      "label": "Chiffre stat",
+      "default": "86k"
+    },
+    {
+      "type": "text",
+      "id": "efficacite_stat_label",
+      "label": "Label stat",
+      "default": "clients satisfaits"
+    },
+    {
+      "type": "color",
+      "id": "efficacite_stat_color",
+      "label": "Couleur stat",
+      "default": "#a855f7"
+    },
+    {
+      "type": "header",
+      "content": "📊 Stats sombres"
+    },
+    {
+      "type": "color",
+      "id": "stats_bg_color",
+      "label": "Couleur de fond",
+      "default": "#2a2a2a"
+    },
+    {
+      "type": "text",
+      "id": "stats_title",
+      "label": "Titre",
+      "default": "Aujourd'hui..."
+    },
+    {
+      "type": "text",
+      "id": "stat1_label_top",
+      "label": "Stat 1 — étiquette haut",
+      "default": "PLUS DE"
+    },
+    {
+      "type": "text",
+      "id": "stat1_number",
+      "label": "Stat 1 — chiffre",
+      "default": "142k"
+    },
+    {
+      "type": "color",
+      "id": "stat1_color",
+      "label": "Stat 1 — couleur",
+      "default": "#f97316"
+    },
+    {
+      "type": "text",
+      "id": "stat1_label_bottom",
+      "label": "Stat 1 — étiquette bas",
+      "default": "produits vendus"
+    },
+    {
+      "type": "text",
+      "id": "stat2_label_top",
+      "label": "Stat 2 — étiquette haut",
+      "default": "AVEC"
+    },
+    {
+      "type": "text",
+      "id": "stat2_number",
+      "label": "Stat 2 — chiffre",
+      "default": "95%"
+    },
+    {
+      "type": "color",
+      "id": "stat2_color",
+      "label": "Stat 2 — couleur",
+      "default": "#a855f7"
+    },
+    {
+      "type": "text",
+      "id": "stat2_label_bottom",
+      "label": "Stat 2 — étiquette bas",
+      "default": "d'avis positifs"
+    },
+    {
+      "type": "header",
+      "content": "⭐ Avis clients"
+    },
+    {
+      "type": "text",
+      "id": "reviews_title",
+      "label": "Titre avis",
+      "default": "Ne nous croyez pas sur parole..."
+    },
+    {
+      "type": "text",
+      "id": "review1_title",
+      "label": "Avis 1 — titre",
+      "default": "Livraison rapide"
+    },
+    {
+      "type": "textarea",
+      "id": "review1_body",
+      "label": "Avis 1 — texte",
+      "default": "J'ai commandé plusieurs accessoires de cuisine et ma commande est arrivée très vite. Les produits étaient bien emballés et conformes aux photos."
+    },
+    {
+      "type": "image_picker",
+      "id": "review1_avatar",
+      "label": "Avis 1 — photo"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 200 × 200 px (carré)"
+    },
+    {
+      "type": "text",
+      "id": "review1_name",
+      "label": "Avis 1 — nom",
+      "default": "Camille Bernard"
+    },
+    {
+      "type": "text",
+      "id": "review1_location",
+      "label": "Avis 1 — ville",
+      "default": "Lille, France"
+    },
+    {
+      "type": "text",
+      "id": "review2_title",
+      "label": "Avis 2 — titre",
+      "default": "Service au top"
+    },
+    {
+      "type": "textarea",
+      "id": "review2_body",
+      "label": "Avis 2 — texte",
+      "default": "Le service client a été réactif et agréable. J'ai reçu une réponse rapidement et mon expérience a été simple du début à la fin."
+    },
+    {
+      "type": "image_picker",
+      "id": "review2_avatar",
+      "label": "Avis 2 — photo"
+    },
+    {
+      "type": "paragraph",
+      "content": "📐 Recommandé : 200 × 200 px (carré)"
+    },
+    {
+      "type": "text",
+      "id": "review2_name",
+      "label": "Avis 2 — nom",
+      "default": "Thomas Morel"
+    },
+    {
+      "type": "text",
+      "id": "review2_location",
+      "label": "Avis 2 — ville",
+      "default": "Lyon, France"
+    }
+  ],
+  "presets": [
+    {
+      "name": "À propos — LD Global"
+    }
+  ]
+}
+{% endschema %}

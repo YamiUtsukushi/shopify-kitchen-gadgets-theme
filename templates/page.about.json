@@ -1,0 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-about",
+      "settings": {
+        "hero_image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_24_41.png",
+        "hero_title": "LD Global",
+        "hero_subtitle": "Les essentiels pour simplifier votre cuisine",
+        "intro_image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_08_34.png",
+        "intro_title": "LD Global",
+        "intro_text1": "LD Global propose une sélection d'accessoires de cuisine pratiques pour simplifier le quotidien. Éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles sont choisis pour aider à cuisiner plus facilement, plus rapidement et avec plus de plaisir.",
+        "intro_text2": "Des produits malins, fiables et fonctionnels, pensés pour gagner du temps, alléger les tâches en cuisine et vous accompagner au quotidien, du repas le plus simple aux recettes les plus créatives.",
+        "intro_thumb1": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_12_32.png",
+        "intro_thumb2": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_14_01.png",
+        "prix_image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_18_48_1.png",
+        "prix_title": "Des prix accessibles.",
+        "prix_text1": "LD Global sélectionne des accessoires de cuisine pratiques à des prix pensés pour rester accessibles au quotidien. Éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles : nous misons sur des essentiels utiles, au bon rapport qualité-prix.",
+        "prix_text2": "Nous privilégions une approche simple : des produits bien choisis, des tarifs justes et une offre pensée pour vous équiper sans dépenser plus que nécessaire. Pas de promesses excessives, juste des indispensables fiables pour cuisiner plus facilement et avec plus de plaisir.",
+        "efficacite_image": "shopify://shop_images/ChatGPT_Image_20_mai_2026_20_21_04.png",
+        "efficacite_title": "Une efficacité pensée pour le quotidien.",
+        "efficacite_text1": "LD Global sélectionne des accessoires de cuisine pratiques pour vous aider à gagner du temps et simplifier chaque préparation. Éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles : chaque produit est choisi pour être efficace, facile à utiliser et utile au quotidien.",
+        "efficacite_text2": "Notre objectif est simple : vous proposer des essentiels fiables, rapides à prendre en main et agréables à utiliser. Moins de gestes inutiles, plus de confort, et une cuisine plus fluide du repas le plus simple aux recettes les plus créatives.",
+        "efficacite_stat_number": "86k",
+        "efficacite_stat_label": "clients satisfaits",
+        "efficacite_stat_color": "#a855f7",
+        "stats_bg_color": "#2a2a2a",
+        "stats_title": "Aujourd'hui...",
+        "stat1_label_top": "PLUS DE",
+        "stat1_number": "142k",
+        "stat1_color": "#f97316",
+        "stat1_label_bottom": "produits vendus",
+        "stat2_label_top": "AVEC",
+        "stat2_number": "95%",
+        "stat2_color": "#a855f7",
+        "stat2_label_bottom": "d'avis positifs",
+        "reviews_title": "Ne nous croyez pas sur parole...",
+        "review1_title": "Livraison rapide",
+        "review1_body": "J'ai commandé plusieurs accessoires de cuisine et ma commande est arrivée très vite. Les produits étaient bien emballés et conformes aux photos.",
+        "review1_name": "Camille Bernard",
+        "review1_location": "Lille, France",
+        "review2_title": "Service au top",
+        "review2_body": "Le service client a été réactif et agréable. J'ai reçu une réponse rapidement et mon expérience a été simple du début à la fin.",
+        "review2_name": "Thomas Morel",
+        "review2_location": "Lyon, France"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

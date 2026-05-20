@@ -65,7 +65,7 @@ Thème Shopify Online Store 2.0 basé sur Dawn, conçu pour une boutique e-comme
 ### 🎨 Charte graphique cohérente
 | Élément | Couleur |
 |---|---|
-| Boutons, accents | `#74B734` (vert) |
+| Boutons, accents | `#36881f` (vert) |
 | Titres | `#2a2a2a` (quasi-noir) |
 | Fond section 1 | `#FFFFFF` |
 | Fond section 2 | `#FDFDFD` |

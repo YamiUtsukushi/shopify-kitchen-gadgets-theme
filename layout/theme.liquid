@@ -372,5 +372,60 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script>
+      /* ── LD Global: Auto-open cart drawer on Add to Cart ── */
+      (function () {
+        function ldOpenDrawer(parsedState) {
+          var drawer = document.querySelector('cart-drawer');
+          if (!drawer) return;
+          /* Fix: quand le panier était vide, <cart-drawer> garde la classe
+             is-empty ce qui affiche l'état "panier vide" même après ajout.
+             On la retire avant d'appeler renderContents. */
+          drawer.classList.remove('is-empty');
+          if (typeof drawer.renderContents === 'function') {
+            drawer.renderContents(parsedState);
+          } else {
+            drawer.open();
+          }
+        }
+
+        /* Intercept plain <form action="…/cart/add"> submits */
+        document.addEventListener('submit', function (e) {
+          var form = e.target;
+          if (!form || !form.action) return;
+          if (form.action.indexOf('/cart/add') === -1) return;
+          /* Skip if inside a <product-form> — handled by product-form.js */
+          if (form.closest('product-form')) return;
+          e.preventDefault();
+          e.stopPropagation();
+
+          var btn = form.querySelector('[type="submit"][name="add"]');
+          if (btn) btn.disabled = true;
+
+          /* Build JSON body from form fields + sections to render */
+          var formData = new FormData(form);
+          var body = { sections: ['cart-drawer', 'cart-icon-bubble'], sections_url: window.location.pathname };
+          formData.forEach(function (val, key) { body[key] = isNaN(val) ? val : Number(val); });
+
+          fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify(body)
+          })
+            .then(function (r) { return r.json(); })
+            .then(function (item) {
+              ldOpenDrawer(item);
+            })
+            .catch(function (err) { console.error('Cart add error', err); })
+            .finally(function () {
+              if (btn) btn.disabled = false;
+            });
+        }, true);
+      })();
+    </script>
   </body>
 </html>

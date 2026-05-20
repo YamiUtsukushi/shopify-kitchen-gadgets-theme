@@ -1,0 +1,578 @@
+{%- style -%}
+  .social-wall-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    font-family: 'Figtree', sans-serif;
+  }
+
+  @media screen and (max-width: 749px) {
+    .social-wall-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+  }
+
+  /* ── En-tête ── */
+  .social-wall__header {
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+  .social-wall__title {
+    font-size: clamp(2rem, 4vw, 6rem);
+    font-weight: 900;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.01em;
+  }
+  .social-wall__subtitle {
+    font-size: 2rem;
+    color: #ffffff;
+    margin: 0 0 0.6rem 0;
+  }
+  .social-wall__networks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    color: #888;
+  }
+  .social-wall__network-link {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .social-wall__network-link:hover { color: #36881f; }
+  .social-wall__network-sep { color: #ccc; }
+
+  /* ── Grille principale ── */
+  .social-wall__grid {
+    display: grid;
+    grid-template-areas:
+      "a b c"
+      "d b e"
+      "d f e";
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: 2fr 1.5fr 1.5fr;
+    gap: 0.5rem;
+    height: 640px;
+  }
+
+  /* ── Assignation des blocs ── */
+  .social-wall__block:nth-child(1) { grid-area: a; }
+  .social-wall__block:nth-child(2) { grid-area: b; }
+  .social-wall__block:nth-child(3) { grid-area: c; }
+  .social-wall__block:nth-child(4) { grid-area: d; }
+  .social-wall__block:nth-child(5) { grid-area: f; }
+  .social-wall__block:nth-child(6) { grid-area: e; }
+
+  /* ── Bloc individuel ── */
+  .social-wall__block {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #2a2a2a;
+  }
+  .social-wall__block-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+  .social-wall__block:hover .social-wall__block-bg {
+    transform: scale(1.05);
+  }
+  .social-wall__block-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.08) 65%);
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .social-wall__block:hover .social-wall__block-overlay {
+    opacity: 0.85;
+  }
+
+  /* ── Contenu texte ── */
+  .social-wall__block-link {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 1.2rem;
+    height: 100%;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  .social-wall__block-icon {
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+    flex-shrink: 0;
+    margin-bottom: 0.1rem;
+  }
+  .social-wall__block:nth-child(2) .social-wall__block-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .social-wall__block-title {
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.25;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+  }
+  .social-wall__block-desc {
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  /* ── Tablette (750px – 989px) ── */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .social-wall__grid {
+      grid-template-areas:
+        "a b"
+        "c d"
+        "e f";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 185px 185px;
+      height: auto;
+    }
+    .social-wall__block:nth-child(1) { grid-area: a; }
+    .social-wall__block:nth-child(2) { grid-area: b; }
+    .social-wall__block:nth-child(3) { grid-area: c; }
+    .social-wall__block:nth-child(4) { grid-area: d; }
+    .social-wall__block:nth-child(5) { grid-area: e; }
+    .social-wall__block:nth-child(6) { grid-area: f; }
+
+    .social-wall__title    { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+    .social-wall__subtitle { font-size: 1.05rem; }
+
+    /* Textes des blocs — override des inline styles */
+    .social-wall__block-title { font-size: clamp(1.05rem, 2vw, 1.3rem) !important; }
+    .social-wall__block-desc  { font-size: clamp(0.9rem, 1.5vw, 1.05rem) !important; }
+    .social-wall__block-link  { gap: 0.8rem; }
+  }
+
+  /* ── Mobile (< 750px) ── */
+  @media screen and (max-width: 749px) {
+    .social-wall-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+    }
+
+    /* En-tête */
+    .social-wall__header   { margin-bottom: 1.2rem; }
+    .social-wall__title    { font-size: clamp(1.5rem, 7vw, 2rem); }
+    .social-wall__subtitle { font-size: 0.95rem; }
+
+    /* Grille : blocs 1+2 pleine largeur, 3+4 côte à côte, 5+6 côte à côte */
+    .social-wall__grid {
+      grid-template-areas:
+        "a a"
+        "b b"
+        "c d"
+        "e f";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 170px 185px 130px 130px;
+      height: auto;
+      gap: 0.4rem;
+    }
+    .social-wall__block:nth-child(1) { grid-area: a; }
+    .social-wall__block:nth-child(2) { grid-area: b; }
+    .social-wall__block:nth-child(3) { grid-area: c; }
+    .social-wall__block:nth-child(4) { grid-area: d; }
+    .social-wall__block:nth-child(5) { grid-area: e; }
+    .social-wall__block:nth-child(6) { grid-area: f; }
+
+    /* Contenu intérieur */
+    .social-wall__block-link {
+      padding: 0.8rem;
+      gap: 0.8rem;
+    }
+    .social-wall__block-icon {
+      width: 18px !important;
+      height: 18px !important;
+    }
+
+    /* Blocs petits (côte à côte) */
+    .social-wall__block:nth-child(3) .social-wall__block-title,
+    .social-wall__block:nth-child(4) .social-wall__block-title,
+    .social-wall__block:nth-child(5) .social-wall__block-title,
+    .social-wall__block:nth-child(6) .social-wall__block-title {
+      font-size: clamp(0.92rem, 3.5vw, 1.08rem) !important;
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .social-wall__block:nth-child(3) .social-wall__block-desc,
+    .social-wall__block:nth-child(4) .social-wall__block-desc,
+    .social-wall__block:nth-child(5) .social-wall__block-desc,
+    .social-wall__block:nth-child(6) .social-wall__block-desc {
+      display: none;
+    }
+
+    /* Blocs pleine largeur */
+    .social-wall__block:nth-child(1) .social-wall__block-title,
+    .social-wall__block:nth-child(2) .social-wall__block-title {
+      font-size: clamp(1.1rem, 5vw, 1.4rem) !important;
+    }
+    .social-wall__block:nth-child(1) .social-wall__block-desc,
+    .social-wall__block:nth-child(2) .social-wall__block-desc {
+      font-size: clamp(0.88rem, 3.5vw, 1rem) !important;
+    }
+  }
+{%- endstyle -%}
+
+{%- comment -%} ── Icônes SVG réseaux sociaux ── {%- endcomment -%}
+{%- capture svg_instagram -%}
+<svg class="social-wall__block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+</svg>
+{%- endcapture -%}
+
+{%- capture svg_tiktok -%}
+<svg class="social-wall__block-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.52V6.76a4.85 4.85 0 0 1-1.02-.07z"/>
+</svg>
+{%- endcapture -%}
+
+{%- capture svg_facebook -%}
+<svg class="social-wall__block-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+</svg>
+{%- endcapture -%}
+
+{%- capture svg_pinterest -%}
+<svg class="social-wall__block-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.43 7.63 11.17-.1-.95-.2-2.4.04-3.44.22-.94 1.41-5.97 1.41-5.97s-.36-.72-.36-1.78c0-1.67.97-2.91 2.17-2.91 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-.99 4-.28 1.19.6 2.17 1.78 2.17 2.13 0 3.77-2.25 3.77-5.5 0-2.87-2.06-4.88-5.01-4.88-3.41 0-5.42 2.56-5.42 5.21 0 1.03.4 2.14.89 2.74a.36.36 0 0 1 .08.34l-.33 1.36c-.05.22-.17.27-.4.16-1.5-.7-2.44-2.89-2.44-4.65 0-3.78 2.75-7.26 7.93-7.26 4.16 0 7.4 2.97 7.4 6.93 0 4.14-2.61 7.46-6.23 7.46-1.22 0-2.36-.63-2.75-1.38l-.75 2.85c-.27 1.04-1 2.35-1.49 3.15A12 12 0 0 0 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/>
+</svg>
+{%- endcapture -%}
+
+<div class="social-wall-{{ section.id }}">
+  <div class="page-width">
+
+    {%- comment -%} ── En-tête ── {%- endcomment -%}
+    <div class="social-wall__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="social-wall__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="social-wall__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.instagram_url != blank or section.settings.tiktok_url != blank or section.settings.facebook_url != blank or section.settings.pinterest_url != blank -%}
+        <div class="social-wall__networks">
+          {%- assign sep = false -%}
+          {%- if section.settings.instagram_url != blank -%}
+            <a href="{{ section.settings.instagram_url }}" class="social-wall__network-link" target="_blank" rel="noopener">Instagram</a>
+            {%- assign sep = true -%}
+          {%- endif -%}
+          {%- if section.settings.tiktok_url != blank -%}
+            {%- if sep -%}<span class="social-wall__network-sep">•</span>{%- endif -%}
+            <a href="{{ section.settings.tiktok_url }}" class="social-wall__network-link" target="_blank" rel="noopener">TikTok</a>
+            {%- assign sep = true -%}
+          {%- endif -%}
+          {%- if section.settings.facebook_url != blank -%}
+            {%- if sep -%}<span class="social-wall__network-sep">•</span>{%- endif -%}
+            <a href="{{ section.settings.facebook_url }}" class="social-wall__network-link" target="_blank" rel="noopener">Facebook</a>
+            {%- assign sep = true -%}
+          {%- endif -%}
+          {%- if section.settings.pinterest_url != blank -%}
+            {%- if sep -%}<span class="social-wall__network-sep">•</span>{%- endif -%}
+            <a href="{{ section.settings.pinterest_url }}" class="social-wall__network-link" target="_blank" rel="noopener">Pinterest</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ── Grille 6 blocs ── {%- endcomment -%}
+    <div class="social-wall__grid">
+      {%- for block in section.blocks -%}
+        <div class="social-wall__block" {{ block.shopify_attributes }}>
+
+          {%- if block.settings.image != blank -%}
+            {%- assign block_alt = block.settings.title | escape -%}
+            {{ block.settings.image | image_url: width: 900 | image_tag:
+              class: 'social-wall__block-bg',
+              alt: block_alt,
+              loading: 'lazy',
+              widths: '400, 600, 900'
+            }}
+          {%- endif -%}
+
+          <div class="social-wall__block-overlay"></div>
+
+          <a href="{{ block.settings.link | default: '#' }}" class="social-wall__block-link" aria-label="{{ block.settings.title | escape }}">
+
+            {%- if block.settings.custom_icon != blank -%}
+              {{ block.settings.custom_icon | image_url: width: 60 | image_tag:
+                class: 'social-wall__block-icon',
+                alt: block.settings.social_network,
+                loading: 'lazy'
+              }}
+            {%- else -%}
+              {%- case block.settings.social_network -%}
+                {%- when 'instagram' -%}{{ svg_instagram }}
+                {%- when 'tiktok' -%}{{ svg_tiktok }}
+                {%- when 'facebook' -%}{{ svg_facebook }}
+                {%- when 'pinterest' -%}{{ svg_pinterest }}
+              {%- endcase -%}
+            {%- endif -%}
+
+            {%- if block.settings.title != blank -%}
+              <p class="social-wall__block-title" style="font-size: {{ block.settings.title_size }}px; color: {{ block.settings.title_color }};">{{ block.settings.title }}</p>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <p class="social-wall__block-desc" style="font-size: {{ block.settings.desc_size }}px; color: {{ block.settings.desc_color }};">{{ block.settings.description }}</p>
+            {%- endif -%}
+
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mur social",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "@ldglobalco"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Retrouvez nos dernières idées cuisine sur nos réseaux."
+    },
+    {
+      "type": "header",
+      "content": "Liens réseaux sociaux"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest"
+    },
+    {
+      "type": "header",
+      "content": "Apparence"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Couleur de fond",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Espacement"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement haut",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement bas",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Bloc",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image de fond"
+        },
+        {
+          "type": "paragraph",
+          "content": "📐 Recommandé : 900 × 600 px (ratio 3:2, JPG ou WebP)"
+        },
+        {
+          "type": "select",
+          "id": "social_network",
+          "label": "Réseau social (icône)",
+          "options": [
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "tiktok",    "label": "TikTok" },
+            { "value": "facebook",  "label": "Facebook" },
+            { "value": "pinterest", "label": "Pinterest" },
+            { "value": "none",      "label": "Aucun" }
+          ],
+          "default": "instagram"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Icône personnalisée (optionnel — remplace l'icône ci-dessus)"
+        },
+        {
+          "type": "paragraph",
+          "content": "📐 Icône personnalisée : 100 × 100 px (carré, PNG fond transparent)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Titre du bloc"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 12,
+          "max": 42,
+          "step": 1,
+          "unit": "px",
+          "label": "Taille du titre",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Couleur du titre",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description courte",
+          "default": "Courte description ici."
+        },
+        {
+          "type": "range",
+          "id": "desc_size",
+          "min": 10,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "Taille de la description",
+          "default": 15
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Couleur de la description",
+          "default": "#eeeeee"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mur social",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "social_network": "instagram",
+            "title": "L'éplucheur qui change tout au quotidien.",
+            "description": "Simple. Rapide. Efficace."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "social_network": "tiktok",
+            "title": "Des repas sains et créatifs en quelques tours !",
+            "description": "Spiralisez, inspirez, régalez-vous.",
+            "title_size": 30,
+            "desc_size": 18
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "social_network": "pinterest",
+            "title": "Le minuteur indispensable pour des cuissons parfaites.",
+            "description": "Simple & précis."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "social_network": "tiktok",
+            "title": "Hachez en un geste, gagnez du temps chaque jour.",
+            "description": "Compact. Puissant. Pratique."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "social_network": "instagram",
+            "title": "Les bons outils font toute la différence.",
+            "description": "Équipez votre cuisine comme un pro."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "social_network": "facebook",
+            "title": "Mixez, savourez, recommencez.",
+            "description": "Des smoothies maison en un clin d'œil."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

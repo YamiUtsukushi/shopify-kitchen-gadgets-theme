@@ -1,0 +1,399 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* ── Grille desktop (12 colonnes) ── */
+  .showcase-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.5rem;
+  }
+
+  /* Bloc 1 : grand gauche (7/12) */
+  .showcase-grid-{{ section.id }} .showcase-block:nth-child(1) { grid-column: span 7; }
+
+  /* Bloc 2 : petit droit (5/12) */
+  .showcase-grid-{{ section.id }} .showcase-block:nth-child(2) { grid-column: span 5; }
+
+  /* Blocs 3–5 : tiers égaux (4/12) */
+  .showcase-grid-{{ section.id }} .showcase-block:nth-child(3),
+  .showcase-grid-{{ section.id }} .showcase-block:nth-child(4),
+  .showcase-grid-{{ section.id }} .showcase-block:nth-child(5) { grid-column: span 4; }
+
+  /* ── Tablette (750px – 989px) ── */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .showcase-grid-{{ section.id }} {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(1) { grid-column: span 6; min-height: 240px; }
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(2) { grid-column: span 6; min-height: 200px; }
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(3) { grid-column: span 3; min-height: 160px; }
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(4) { grid-column: span 3; min-height: 160px; }
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(5) { grid-column: span 6; min-height: 160px; }
+  }
+
+  /* ── Mobile (< 750px) ── */
+  @media screen and (max-width: 749px) {
+    .showcase-grid-{{ section.id }} {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+    }
+    /* Blocs 1 et 2 : pleine largeur */
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(1) { grid-column: span 2; min-height: 170px; }
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(2) { grid-column: span 2; min-height: 140px; }
+    /* Blocs 3 et 4 : côte à côte */
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(3) { grid-column: span 1; min-height: 120px; }
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(4) { grid-column: span 1; min-height: 120px; }
+    /* Bloc 5 : pleine largeur */
+    .showcase-grid-{{ section.id }} .showcase-block:nth-child(5) { grid-column: span 2; min-height: 120px; }
+
+    /* Contenu intérieur */
+    .showcase-block__content {
+      padding: 1rem;
+      gap: 0.6rem;
+    }
+    .showcase-block__title {
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      max-width: 100%;
+    }
+    .showcase-block__btn {
+      font-size: 0.78rem;
+      padding: 0.45rem 0.9rem;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  /* ── Bloc individuel ── */
+  .showcase-block {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 260px;
+    background-color: #e8e8e8;
+    font-family: 'Figtree', sans-serif;
+  }
+
+  .showcase-block__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+
+  .showcase-block:hover .showcase-block__bg {
+    transform: scale(1.05);
+  }
+
+  /* Dégradé doux pour lisibilité du texte */
+  .showcase-block__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(140deg, rgba(0, 0, 0, 0.22) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  /* Contenu (texte + bouton) en haut à gauche */
+  .showcase-block__content {
+    position: relative;
+    z-index: 1;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    height: 100%;
+  }
+
+  .showcase-block__title {
+    margin: 0;
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    max-width: 230px;
+  }
+
+  .showcase-block__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 230px;
+    opacity: 0.9;
+  }
+
+  .showcase-block__subtitle--light {
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .showcase-block__subtitle--dark {
+    color: #1a1a1a;
+  }
+
+  .showcase-block__title--light {
+    color: #ffffff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .showcase-block__title--dark {
+    color: #1a1a1a;
+  }
+
+  .showcase-block__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #36881f;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .showcase-block__btn:hover {
+    background-color: #5a9228;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title inline-richtext {{ section.settings.heading_size }}" style="margin-bottom: 1.5rem;">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    <div class="showcase-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="showcase-block" {{ block.shopify_attributes }}>
+
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1200 | image_tag:
+              class: 'showcase-block__bg',
+              alt: block.settings.title,
+              loading: 'lazy',
+              widths: '400, 600, 800, 1000, 1200'
+            }}
+          {%- endif -%}
+
+          <div class="showcase-block__overlay"></div>
+
+          <div class="showcase-block__content">
+            {%- if block.settings.title != blank -%}
+              <p class="showcase-block__title showcase-block__title--{{ block.settings.text_color }}"
+                style="font-size: {{ block.settings.title_size }}px;">
+                {{ block.settings.title }}
+              </p>
+            {%- endif -%}
+
+            {%- if block.settings.subtitle != blank -%}
+              <p class="showcase-block__subtitle showcase-block__subtitle--{{ block.settings.text_color }}"
+                style="font-size: {{ block.settings.subtitle_size }}px;">
+                {{ block.settings.subtitle }}
+              </p>
+            {%- endif -%}
+
+            {%- if block.settings.button_label != blank -%}
+              <a href="{{ block.settings.button_link | default: '#' }}" class="showcase-block__btn">
+                {{ block.settings.button_label }} →
+              </a>
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vitrine collections",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titre de la section"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Taille du titre",
+      "options": [
+        { "value": "h2", "label": "Petit" },
+        { "value": "h1", "label": "Moyen" },
+        { "value": "h0", "label": "Grand" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Palette de couleurs",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement haut",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement bas",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Bloc",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "paragraph",
+          "content": "📐 Recommandé : 1200 × 800 px (ratio 3:2, JPG ou WebP)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Titre du bloc"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 12,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Taille du titre",
+          "default": 24
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sous-titre (optionnel)"
+        },
+        {
+          "type": "range",
+          "id": "subtitle_size",
+          "min": 10,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "label": "Taille du sous-titre",
+          "default": 14
+        },
+        {
+          "type": "select",
+          "id": "text_color",
+          "label": "Couleur du texte",
+          "options": [
+            { "value": "light", "label": "Blanc" },
+            { "value": "dark",  "label": "Noir" }
+          ],
+          "default": "light"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texte du bouton",
+          "default": "Découvrir"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Lien du bouton"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vitrine collections",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "title": "Éplucheurs conçus pour aller à l'essentiel.",
+            "button_label": "Éplucheurs",
+            "text_color": "light"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Spiralisez vos idées.",
+            "button_label": "Spiralisateurs",
+            "text_color": "light"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Le temps parfait, à chaque fois.",
+            "button_label": "Minuteurs",
+            "text_color": "dark"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Coupez, tranchez, gagnez du temps.",
+            "button_label": "Découpe",
+            "text_color": "dark"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Mixez votre quotidien.",
+            "button_label": "Mixeur",
+            "text_color": "light"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-faq",
+      "blocks": {
+        "cat-commandes": {
+          "type": "category",
+          "settings": {
+            "name": "Commandes",
+            "icon": "shopify://shop_images/1_4313cc9d-2c9d-4b87-9023-37d2b00ed734.png",
+            "color": "#36881f"
+          }
+        },
+        "q1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quels sont les moyens de paiement acceptés ?",
+            "answer": "Nous acceptons les cartes bancaires (Visa, Mastercard, American Express), PayPal et Apple Pay. Tous les paiements sont 100 % sécurisés grâce au protocole SSL."
+          }
+        },
+        "q2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quels sont les délais de traitement de ma commande ?",
+            "answer": "Votre commande est traitée sous 1 à 2 jours ouvrés avant expédition. Vous recevrez un email de confirmation avec votre numéro de suivi."
+          }
+        },
+        "q3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Puis-je modifier ou annuler ma commande ?",
+            "answer": "Vous pouvez modifier ou annuler votre commande dans les 24h suivant la validation. Passé ce délai, contactez-nous au plus vite via notre page Contact."
+          }
+        },
+        "cat-produits": {
+          "type": "category",
+          "settings": {
+            "name": "Produits",
+            "icon": "shopify://shop_images/2_8f7e0ba6-4b54-4657-9e91-7ddcdb46f886.png",
+            "color": "#36881f"
+          }
+        },
+        "q4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "À quoi servent vos produits de cuisine ?",
+            "answer": "Nos accessoires sont conçus pour simplifier vos préparations : éplucheurs, spiraliseurs, minuteurs, outils de découpe, mixeurs et ustensiles pratiques pour cuisiner plus facilement et avec plus de plaisir."
+          }
+        },
+        "q5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Vos produits sont-ils faciles à utiliser au quotidien ?",
+            "answer": "Oui, tous nos produits sont sélectionnés pour leur facilité d'utilisation et leur ergonomie. Ils sont pensés pour être pris en main rapidement, même sans expérience particulière."
+          }
+        },
+        "q6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Les matériaux utilisés sont-ils durables et résistants ?",
+            "answer": "Nous sélectionnons des produits fabriqués avec des matériaux de qualité (acier inoxydable, ABS, silicone alimentaire). Chaque article est testé pour sa résistance et sa durabilité."
+          }
+        },
+        "q7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Comment entretenir mes ustensiles pour les garder efficaces ?",
+            "answer": "La plupart de nos ustensiles se lavent facilement à l'eau chaude savonneuse ou au lave-vaisselle. Consultez la fiche produit pour les recommandations spécifiques à chaque article."
+          }
+        },
+        "q8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Les produits sont-ils adaptés aux débutants en cuisine ?",
+            "answer": "Absolument ! Nos produits sont pensés pour être intuitifs et accessibles à tous. Ils sont accompagnés d'instructions claires pour une prise en main immédiate."
+          }
+        },
+        "cat-livraison": {
+          "type": "category",
+          "settings": {
+            "name": "Livraison",
+            "icon": "shopify://shop_images/3_e7cbaacf-7f4c-4de3-b037-6339a58062d2.png",
+            "color": "#36881f"
+          }
+        },
+        "q9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quels sont les frais de livraison ?",
+            "answer": "La livraison est offerte à partir de 30 € d'achat. En dessous de ce montant, des frais forfaitaires de 3,99 € s'appliquent."
+          }
+        },
+        "q10": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quels sont les délais de livraison ?",
+            "answer": "Comptez 5 à 10 jours ouvrés pour la livraison standard. Vous recevrez un email avec votre numéro de suivi dès l'expédition de votre colis."
+          }
+        }
+      },
+      "block_order": [
+        "cat-commandes",
+        "q1",
+        "q2",
+        "q3",
+        "cat-produits",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "cat-livraison",
+        "q9",
+        "q10"
+      ],
+      "settings": {
+        "hero_image": "shopify://shop_images/73d2bcc2-0097-4e24-94b0-12a98a5c20ae_1.png",
+        "hero_title": "FAQ",
+        "hero_subtitle": "Vos questions, nos réponses pour cuisiner plus simplement.",
+        "sidebar_title": "FAQ",
+        "sidebar_icon": "shopify://shop_images/4_a6e3568c-f649-4080-8116-97d9b790c290.png",
+        "sidebar_tagline": "Des outils efficaces pour une cuisine simple, saine et créative.",
+        "sidebar_sub": "Vous avez des questions ?\nNous avons les réponses.",
+        "search_placeholder": "Rechercher une question...",
+        "help_icon": "shopify://shop_images/5_c73b558d-b272-4883-a322-e2e21563a597.png",
+        "help_label": "Besoin d'aide ?",
+        "help_desc": "Notre équipe est là pour vous aider.",
+        "contact_url": "",
+        "contact_label": "Contactez-nous",
+        "panel_footer_text": "Vous ne trouvez pas la réponse à votre question ?",
+        "panel_footer_link": "Contactez-nous",
+        "cta_bg_color": "#b5975a",
+        "cta_text": "Vous avez encore des questions ?\nN'hésitez pas à nous contacter.",
+        "cta_label": "CONTACTEZ-NOUS",
+        "cta_url": ""
+      }
+    },
+    "split_image_cta_NMWFnA": {
+      "type": "split-image-cta",
+      "name": "Split image + CTA",
+      "settings": {
+        "image_left": "shopify://shop_images/ChatGPT_Image_20_mai_2026_22_11_27.png",
+        "image_right": "shopify://shop_images/ChatGPT_Image_20_mai_2026_22_14_01.png",
+        "title": "Envie d'en savoir plus ?",
+        "description": "Découvrez l'univers de LD Global CO. et notre sélection d'accessoires pensés pour simplifier votre quotidien en cuisine.",
+        "btn_label": "NOTRE BOUTIQUE",
+        "btn_url": "",
+        "btn_color": "#3d2b1f",
+        "bg_color": "#f0ebe0",
+        "outer_padding": 20,
+        "separator_size": 3,
+        "height": 520,
+        "border_radius": 16
+      }
+    }
+  },
+  "order": [
+    "main",
+    "split_image_cta_NMWFnA"
+  ]
+}

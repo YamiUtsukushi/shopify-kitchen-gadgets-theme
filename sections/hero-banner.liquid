@@ -27,8 +27,15 @@
 <style>
   /* Mot mis en évidence (em) → vert de la charte */
   .hero-banner-section-{{ section.id }} .banner__heading em {
-    color: #74B734;
+    color: #36881f;
     font-style: normal;
+  }
+
+  /* Police Figtree sur tout le hero */
+  .hero-banner-section-{{ section.id }} .banner__heading,
+  .hero-banner-section-{{ section.id }} .banner__text,
+  .hero-banner-section-{{ section.id }} .button {
+    font-family: 'Figtree', sans-serif;
   }
 
   /* Deux boutons côte à côte */
@@ -41,8 +48,8 @@
 
   /* Bouton primaire — vert plein */
   .hero-banner-section-{{ section.id }} .button--primary {
-    background-color: #74B734;
-    border-color: #74B734;
+    background-color: #36881f;
+    border-color: #36881f;
     color: #ffffff;
   }
   .hero-banner-section-{{ section.id }} .button--primary:hover {
@@ -53,11 +60,11 @@
   /* Bouton secondaire — contour vert */
   .hero-banner-section-{{ section.id }} .button--secondary {
     background-color: transparent;
-    border-color: #74B734;
-    color: #74B734;
+    border-color: #36881f;
+    color: #36881f;
   }
   .hero-banner-section-{{ section.id }} .button--secondary:hover {
-    background-color: #74B734;
+    background-color: #36881f;
     color: #ffffff;
   }
 
@@ -70,11 +77,18 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 3;
+    z-index: 2;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 0.6rem 1.2rem;
     border-radius: 2rem;
     width: fit-content;
+  }
+
+  /* ── Cacher les contrôles slideshow sur tablette et mobile ── */
+  @media screen and (max-width: 989px) {
+    .hero-banner-section-{{ section.id }} .slideshow__controls {
+      display: none;
+    }
   }
 
   /* ── Responsive mobile ── */
@@ -115,7 +129,7 @@
   }
   .rotating-word {
     display: inline-block;
-    color: #74B734;
+    color: #36881f;
     font-style: normal;
     animation: rwFadeIn 0.45s ease forwards;
   }
@@ -176,6 +190,22 @@
         aria-label="Diapositive suivante" aria-controls="Slider-{{ section.id }}">
         <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
       </button>
+
+      {%- if section.settings.auto_rotate -%}
+        <button
+          type="button"
+          class="slideshow__autoplay slider-button"
+          aria-label="{{ 'sections.slideshow.pause_slideshow' | t }}"
+          style="display:none;"
+        >
+          <span class="icon icon-pause">
+            <span class="svg-wrapper">{{- 'icon-pause.svg' | inline_asset_content -}}</span>
+          </span>
+          <span class="icon icon-play">
+            <span class="svg-wrapper">{{- 'icon-play.svg' | inline_asset_content -}}</span>
+          </span>
+        </button>
+      {%- endif -%}
 
     </div>
   {%- endif -%}
@@ -659,7 +689,7 @@
           "type": "color",
           "id": "color_rotating_word",
           "label": "Couleur du mot rotatif",
-          "default": "#74B734"
+          "default": "#36881f"
         },
         {
           "type": "color",
@@ -671,7 +701,7 @@
           "type": "color",
           "id": "color_btn1_bg",
           "label": "Bouton 1 — fond",
-          "default": "#74B734"
+          "default": "#36881f"
         },
         {
           "type": "color",
@@ -683,19 +713,19 @@
           "type": "color",
           "id": "color_btn1_border",
           "label": "Bouton 1 — contour",
-          "default": "#74B734"
+          "default": "#36881f"
         },
         {
           "type": "color",
           "id": "color_btn2_text",
           "label": "Bouton 2 — texte",
-          "default": "#74B734"
+          "default": "#36881f"
         },
         {
           "type": "color",
           "id": "color_btn2_border",
           "label": "Bouton 2 — contour",
-          "default": "#74B734"
+          "default": "#36881f"
         }
       ]
     }

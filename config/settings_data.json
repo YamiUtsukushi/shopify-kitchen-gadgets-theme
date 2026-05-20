@@ -15,7 +15,7 @@
     "heading_scale": 100,
     "type_body_font": "assistant_n4",
     "body_scale": 100,
-    "page_width": 1200,
+    "page_width": 1400,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
@@ -122,7 +122,7 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
-    "cart_type": "notification",
+    "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
@@ -148,7 +148,7 @@
           "background": "#ffffff",
           "background_gradient": "",
           "text": "#2a2a2a",
-          "button": "#74b734",
+          "button": "#36881f",
           "button_label": "#ffffff",
           "secondary_button_label": "#2a2a2a",
           "shadow": "#2a2a2a"
@@ -159,7 +159,7 @@
           "background": "#fdfdfd",
           "background_gradient": "",
           "text": "#2a2a2a",
-          "button": "#74b734",
+          "button": "#36881f",
           "button_label": "#ffffff",
           "secondary_button_label": "#2a2a2a",
           "shadow": "#2a2a2a"
@@ -170,7 +170,7 @@
           "background": "#2a2a2a",
           "background_gradient": "",
           "text": "#ffffff",
-          "button": "#74b734",
+          "button": "#36881f",
           "button_label": "#ffffff",
           "secondary_button_label": "#ffffff",
           "shadow": "#000000"
@@ -178,11 +178,11 @@
       },
       "scheme-4": {
         "settings": {
-          "background": "#74b734",
+          "background": "#36881f",
           "background_gradient": "",
           "text": "#ffffff",
           "button": "#ffffff",
-          "button_label": "#74b734",
+          "button_label": "#36881f",
           "secondary_button_label": "#ffffff",
           "shadow": "#2a2a2a"
         }
@@ -209,7 +209,7 @@
             "background": "#FFFFFF",
             "background_gradient": "",
             "text": "#2a2a2a",
-            "button": "#74B734",
+            "button": "#36881f",
             "button_label": "#FFFFFF",
             "secondary_button_label": "#2a2a2a",
             "shadow": "#2a2a2a"
@@ -220,7 +220,7 @@
             "background": "#FDFDFD",
             "background_gradient": "",
             "text": "#2a2a2a",
-            "button": "#74B734",
+            "button": "#36881f",
             "button_label": "#FFFFFF",
             "secondary_button_label": "#2a2a2a",
             "shadow": "#2a2a2a"
@@ -231,7 +231,7 @@
             "background": "#2a2a2a",
             "background_gradient": "",
             "text": "#FFFFFF",
-            "button": "#74B734",
+            "button": "#36881f",
             "button_label": "#FFFFFF",
             "secondary_button_label": "#FFFFFF",
             "shadow": "#000000"
@@ -239,11 +239,11 @@
         },
         "scheme-4": {
           "settings": {
-            "background": "#74B734",
+            "background": "#36881f",
             "background_gradient": "",
             "text": "#FFFFFF",
             "button": "#FFFFFF",
-            "button_label": "#74B734",
+            "button_label": "#36881f",
             "secondary_button_label": "#FFFFFF",
             "shadow": "#2a2a2a"
           }
@@ -264,7 +264,7 @@
       "heading_scale": 100,
       "type_body_font": "assistant_n4",
       "body_scale": 100,
-      "page_width": 1200,
+      "page_width": 1400,
       "spacing_sections": 0,
       "spacing_grid_horizontal": 8,
       "spacing_grid_vertical": 8,
@@ -371,7 +371,7 @@
       "predictive_search_show_vendor": false,
       "predictive_search_show_price": false,
       "currency_code_enabled": true,
-      "cart_type": "notification",
+      "cart_type": "drawer",
       "show_vendor": false,
       "show_cart_note": false,
       "cart_drawer_collection": "",
